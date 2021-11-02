@@ -11,7 +11,7 @@ import { RootStackParamList } from "../types";
 
 const linking: LinkingOptions<RootStackParamList> = {
   // prefixes: [Linking.makeUrl('/')],
-  prefixes: [Linking.createURL("/native-global/")],
+  prefixes: [Linking.createURL("/")],
   config: {
     screens: {
       Root: {
