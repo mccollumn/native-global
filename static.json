@@ -1,6 +1,3 @@
 {
-  "root": "web-build/",
-  "routes": {
-    "/**": "index.html"
-  }
+  "root": "web-build"
 }
