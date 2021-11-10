@@ -8,10 +8,9 @@ Monorepo for React Native Web/IOS/Android app deployment
 
 - npm start
 
-- Deploy to Github Pages
-
+- Build for web
   ```
-  npm run deploy
+  npm run build
   ```
 
 ## Docs
@@ -20,8 +19,23 @@ Monorepo for React Native Web/IOS/Android app deployment
 
   https://docs.expo.dev/distribution/building-standalone-apps/
 
-## Deploy
-
-- Deploying to Heroku
+## Deploy to Heroku
 
 https://gist.github.com/hone/24b06869b4c1eca701f9
+
+- Install the Static CLI Plugin
+
+  ```
+  heroku plugins: install heroku-cli-static
+  ```
+
+- Set the buildpack
+
+  ```
+  heroku buildpacks:set https://github.com/hone/heroku-buildpack-static
+  ```
+
+- Deploy
+  ```
+  heroku static:deploy
+  ```
