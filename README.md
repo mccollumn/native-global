@@ -14,10 +14,6 @@ Monorepo for React Native Web/IOS/Android app deployment
 
   https://docs.expo.dev/distribution/building-standalone-apps/
 
-## Deploy to Github Pages
-
-- npm run deploy
-
 ## Deploy to Heroku
 
 https://gist.github.com/hone/24b06869b4c1eca701f9
