@@ -8,20 +8,25 @@ Monorepo for React Native Web/IOS/Android app deployment
 
 - npm start
 
-- Build for web
-  ```
-  npm run build
-  ```
-
 ## Docs
 
 - Building standalone apps
 
   https://docs.expo.dev/distribution/building-standalone-apps/
 
+## Deploy to Github Pages
+
+- npm run deploy
+
 ## Deploy to Heroku
 
 https://gist.github.com/hone/24b06869b4c1eca701f9
+
+- Build for web
+
+  ```
+  npm run build
+  ```
 
 - Install the Static CLI Plugin
 
