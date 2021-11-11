@@ -1,6 +1,9 @@
 {
   "homepage": "https://mccollumn.github.io/native-global/",
   "main": "node_modules/expo/AppEntry.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -8,6 +11,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest --watchAll",
+    "build": "expo build:web",
     "deploy": "gh-pages -d web-build",
     "predeploy": "expo build:web"
   },
