@@ -36,6 +36,12 @@ Monorepo for React Native Web/IOS/Android app deployment
     heroku login
     ```
 
+  - Add Heroku remote to local repo
+
+    ```
+    heroku git:remote -a native-global
+    ```
+
   - Ensure the static buildpack is set (it should be already)
 
     ```

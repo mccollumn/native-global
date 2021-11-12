@@ -1,5 +1,4 @@
 {
-  "homepage": "https://mccollumn.github.io/native-global/",
   "main": "node_modules/expo/AppEntry.js",
   "engines": {
     "node": "16.x"
