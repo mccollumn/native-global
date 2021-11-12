@@ -16,27 +16,43 @@ Monorepo for React Native Web/IOS/Android app deployment
 
 ## Deploy to Heroku
 
-https://gist.github.com/hone/24b06869b4c1eca701f9
+- ### Setup
 
-- Build for web
+  - Install the Heroku CLI
 
-  ```
-  npm run build
-  ```
+    ```
+    sudo snap install heroku --classic
+    ```
 
-- Install the Static CLI Plugin
+  - Install the Static CLI Plugin
 
-  ```
-  heroku plugins: install heroku-cli-static
-  ```
+    ```
+    heroku plugins:install heroku-cli-static
+    ```
 
-- Set the buildpack
+  - Log into your Heroku account
 
-  ```
-  heroku buildpacks:set https://github.com/hone/heroku-buildpack-static
-  ```
+    ```
+    heroku login
+    ```
 
-- Deploy
-  ```
-  heroku static:deploy
-  ```
+  - Ensure the static buildpack is set (it should be already)
+
+    ```
+    heroku buildpacks:set https://github.com/hone/heroku-buildpack-static
+    ```
+
+- ### Deploy
+
+  https://gist.github.com/hone/24b06869b4c1eca701f9
+
+  - Build for web
+
+    ```
+    npm run build
+    ```
+
+  - Deploy
+    ```
+    heroku static:deploy
+    ```
