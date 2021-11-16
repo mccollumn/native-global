@@ -26,11 +26,24 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Install packages
+        run: npm install
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      # Runs a single command using the runners shell
+      - name: Install Expo CLI
+        run: npm install expo-cli
+        
+        # Runs a single command using the runners shell
+      - name: Login to Expo
+        run: expo login -u ${{ secrets.EXPO_USERNAME }} -p ${{ secrets.EXPO_PASSWORD }}
+        
+        # Runs a single command using the runners shell
+      - name: Install Expo CLI
+        run: npm install expo-cli
+        
+        # Runs a single command using the runners shell
+      - name: Build for Android
+        run: expo build:android
+          
+          
+          
