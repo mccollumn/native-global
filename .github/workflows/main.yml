@@ -31,7 +31,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install Expo CLI
-        run: npm install expo-cli
+        run: npm install expo-cli --global
         
         # Runs a single command using the runners shell
       - name: Login to Expo
