@@ -22,6 +22,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - shell: bash
+        env:
+          EXPO_USERNAME: ${{ secrets.EXPO_USERNAME }}
+          EXPO_PASSWORD: ${{ secrets.EXPO_PASSWORD }}
+        
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
@@ -35,7 +40,7 @@ jobs:
         
         # Runs a single command using the runners shell
       - name: Login to Expo
-        run: expo login -u ${{ secrets.EXPO_USERNAME }} -p ${{ secrets.EXPO_PASSWORD }}
+        run: expo login -u "$EXPO_USERNAME" -p "$EXPO_PASSWORD"
         
         # Runs a single command using the runners shell
       - name: Install Expo CLI
