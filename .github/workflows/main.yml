@@ -26,26 +26,20 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
       - name: Install packages
         run: npm install
-
-      # Runs a single command using the runners shell
+        
       - name: Install Expo CLI
         run: npm install expo-cli --global
         
-        # Runs a single command using the runners shell
       - name: Login to Expo
         env:
           EXPO_CLI_USERNAME: ${{ secrets.EXPO_USERNAME }}
           EXPO_CLI_PASSWORD: ${{ secrets.EXPO_PASSWORD }}
-        run: expo login -u $EXPO_CLI_USERNAME -p $EXPO_CLI_PASSWORD
+        run: |
+          echo Username: $EXPO_CLI_USERNAME
+          expo login -u $EXPO_CLI_USERNAME -p $EXPO_CLI_PASSWORD
         
-        # Runs a single command using the runners shell
-      - name: Install Expo CLI
-        run: npm install expo-cli
-        
-        # Runs a single command using the runners shell
       - name: Build for Android
         run: expo build:android
           
