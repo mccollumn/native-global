@@ -39,7 +39,7 @@ jobs:
         env:
           EXPO_CLI_USERNAME: ${{ secrets.EXPO_USERNAME }}
           EXPO_CLI_PASSWORD: ${{ secrets.EXPO_PASSWORD }}
-        run: expo login -u "$EXPO_CLI_USERNAME" -p "$EXPO_CLI_PASSWORD"
+        run: expo login -u $EXPO_CLI_USERNAME -p $EXPO_CLI_PASSWORD
         
         # Runs a single command using the runners shell
       - name: Install Expo CLI
