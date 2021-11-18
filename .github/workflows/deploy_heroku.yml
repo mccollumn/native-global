@@ -30,8 +30,11 @@ jobs:
       - name: Install packages
         run: npm install
         
+     # - name: Install Heroku CLI
+       # run: sudo snap install heroku --classic
+        
       - name: Install Heroku CLI
-        run: sudo snap install heroku --classic
+        run: curl https://cli-assets.heroku.com/install.sh | sh
         
       - name: Install Static CLI Plugin
         run: HEROKU_API_KEY=$HEROKU_API_KEY heroku plugins:install heroku-cli-static
