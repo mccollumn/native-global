@@ -14,11 +14,13 @@ on:
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
+jobs:   
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    env:
+      HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -32,19 +34,16 @@ jobs:
         run: sudo snap install heroku --classic
         
       - name: Install Static CLI Plugin
-        run: heroku plugins:install heroku-cli-static
-        
-      - name: Log into Heroku account
-        run: heroku login
+        run: HEROKU_API_KEY=$HEROKU_API_KEY heroku plugins:install heroku-cli-static
         
       - name: Add Heroku remote to local repo
-        run: heroku git:remote -a native-global
+        run: HEROKU_API_KEY=$HEROKU_API_KEY heroku git:remote -a native-global
         
       - name: Ensure the static buildpack is set
-        run: heroku buildpacks:set https://github.com/hone/heroku-buildpack-static
+        run: HEROKU_API_KEY=$HEROKU_API_KEY heroku buildpacks:set https://github.com/hone/heroku-buildpack-static
         
       - name: Build for web
         run: npm run build
         
       - name: Deploy
-        run: heroku static:deploy
+        run: HEROKU_API_KEY=$HEROKU_API_KEY heroku static:deploy
