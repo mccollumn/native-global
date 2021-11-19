@@ -62,3 +62,10 @@ Monorepo for React Native Web/IOS/Android app deployment
     ```
     heroku static:deploy
     ```
+
+## Start Storybook
+
+```
+ npm run storybook
+ npm run web
+```
