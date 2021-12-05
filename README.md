@@ -67,5 +67,5 @@ Monorepo for React Native Web/IOS/Android app deployment
 
 ```
  npm run storybook
- npm run web
+ npm run storybook:web
 ```

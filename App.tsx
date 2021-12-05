@@ -7,13 +7,21 @@ import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 
 import StorybookUI from "./storybook";
-import Config from "react-native-config";
 
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 
 const theme = {
   ...DefaultTheme,
 };
+
+import {
+  LOAD_STORYBOOK,
+  POOT
+} from '@env';
+
+console.log('istrue', LOAD_STORYBOOK, typeof LOAD_STORYBOOK);
+
+console.log('POOT', POOT);
 
 export function App() {
   const isLoadingComplete = useCachedResources();
@@ -33,4 +41,6 @@ export function App() {
   }
 }
 
-export default Config.LOAD_STORYBOOK === "true" ? StorybookUI : App;
+//export default StorybookUI;
+
+export default LOAD_STORYBOOK === "true" ? StorybookUI : App;
