@@ -36,6 +36,4 @@ export function App() {
   }
 }
 
-//export default StorybookUI;
-
 export default LOAD_STORYBOOK === "true" ? StorybookUI : App;
