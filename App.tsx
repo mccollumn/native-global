@@ -7,7 +7,16 @@ import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 
 import StorybookUI from "./storybook";
-import Config from "react-native-config";
+
+import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+
+const theme = {
+  ...DefaultTheme,
+};
+
+import {
+  LOAD_STORYBOOK,
+} from '@env';
 
 export function App() {
   const isLoadingComplete = useCachedResources();
@@ -18,11 +27,13 @@ export function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
+        <PaperProvider theme={theme}>
+          <Navigation colorScheme={colorScheme} />
+          <StatusBar />
+        </PaperProvider>
       </SafeAreaProvider>
     );
   }
 }
 
-export default Config.LOAD_STORYBOOK === "true" ? StorybookUI : App;
+export default LOAD_STORYBOOK === "true" ? StorybookUI : App;
