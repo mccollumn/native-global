@@ -4,10 +4,10 @@
 // https://github.com/elderfo/react-native-storybook-loader.git
 
 function loadStories() {
-  require("../components/TextInputMono.stories");
+  require("../components/mono/TextInputMono.stories");
 }
 
-const stories = ["../components/TextInputMono.stories"];
+const stories = ["../components/mono/TextInputMono.stories"];
 
 module.exports = {
   loadStories,
