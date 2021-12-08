@@ -16,12 +16,7 @@ const theme = {
 
 import {
   LOAD_STORYBOOK,
-  POOT
 } from '@env';
-
-console.log('istrue', LOAD_STORYBOOK, typeof LOAD_STORYBOOK);
-
-console.log('POOT', POOT);
 
 export function App() {
   const isLoadingComplete = useCachedResources();
