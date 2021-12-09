@@ -42,8 +42,8 @@ jobs:
       - name: Add Heroku remote to local repo
         run: HEROKU_API_KEY=$HEROKU_API_KEY heroku git:remote -a native-global
         
-      - name: Ensure the static buildpack is set
-        run: HEROKU_API_KEY=$HEROKU_API_KEY heroku buildpacks:set https://github.com/hone/heroku-buildpack-static
+     # - name: Ensure the static buildpack is set
+     #   run: HEROKU_API_KEY=$HEROKU_API_KEY heroku buildpacks:set https://github.com/hone/heroku-buildpack-static
         
       - name: Build for web
         run: npm run build
