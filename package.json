@@ -1,4 +1,5 @@
 {
+  "name": "reactglobal",
   "main": "node_modules/expo/AppEntry.js",
   "engines": {
     "node": "16.x"
@@ -34,10 +35,10 @@
     "expo-splash-screen": "~0.13.5",
     "expo-status-bar": "~1.1.0",
     "expo-web-browser": "~10.0.3",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-hook-form": "^7.21.0",
-    "react-native": "0.64.3",
+    "react-native": "0.66.4",
     "react-native-dotenv": "^3.3.0",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-paper": "^4.10.1",
@@ -55,6 +56,7 @@
     "@storybook/addon-ondevice-knobs": "^5.3.25",
     "@storybook/react-native": "^5.3.25",
     "@storybook/react-native-server": "^5.3.23",
+    "@testing-library/react-native": "^9.0.0-alpha.0",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
     "babel-loader": "^8.2.3",
