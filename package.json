@@ -9,7 +9,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "npm run clear && expo start --web",
-    "storybook:web": "npm run clear && APP_ENV=storybook expo start --web",
+    "storybook:web": "npm run clear && EXPO_NO_TYPESCRIPT_SETUP=1 APP_ENV=storybook expo start --web",
     "eject": "expo eject",
     "test": "jest --watchAll",
     "build": "expo build:web",
@@ -19,7 +19,10 @@
     "clear": "rm -rf .expo"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "setupFiles": [
+      "./mock.js"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
