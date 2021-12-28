@@ -9,6 +9,7 @@ import {
 
 describe('<FormProviderMono/>', () => {
   it('Base form submits', async () => {
+    const mockOnChange = jest.fn();
     const mockSubmit = jest.fn();
     const userText = 'user text';
 
@@ -29,14 +30,12 @@ describe('<FormProviderMono/>', () => {
 
         <TextInputMono
           testID='input'
-          name='textfield'/>
+          name='textfield'
+          onChange={mockOnChange}
+        />
 
       </FormProviderMono>
     );
-
-    // TODO: Add Onchange handling
-    //const input = getByTestId('input');
-    //fireEvent.changeText(input, userText);
 
     const input = getByTestId('input');
     fireEvent.changeText(input, userText);
@@ -50,6 +49,10 @@ describe('<FormProviderMono/>', () => {
       expect(mockSubmit).toBeCalledWith({
         textfield: userText
       });
+
+      expect(mockOnChange).toBeCalledWith(
+        userText
+      );
     });
 
   });

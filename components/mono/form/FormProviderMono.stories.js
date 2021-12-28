@@ -16,7 +16,7 @@ storiesOf("Form", module)
       </PaperProvider>
     );
   })
-  .add("Basic Example", () => {
+  .add("Form Example", () => {
     return (<FormExample/>);
   });
 
@@ -25,7 +25,6 @@ const FormExample = () => {
   const [values, setValues] = React.useState({});
 
   const onSubmit = (formValues) => {
-    console.log('Values', formValues);
     setValues(formValues);
   };
 
@@ -34,7 +33,7 @@ const FormExample = () => {
     <View>
 
       <View>
-        <Text>Mono: {values.Mono}</Text>
+        <Text>Submit Value: {values.Mono}</Text>
       </View>
 
       <FormProviderMono
