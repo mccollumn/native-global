@@ -1,19 +1,35 @@
 import React from "react";
-import { useForm, FormProvider, useFormContext } from "react-hook-form";
+import { View } from 'react-native';
+import { useForm, FormProvider } from "react-hook-form";
+import SubmitButton from '../buttons/SubmitButton';
 
 export default function FormProviderMono({
-  onSubmit = () => {},
+  onSubmit = () => { },
+  submitButtonText='',
   children,
 }: FormProviderMonoProps) {
   const methods = useForm();
-  const submitHandler = (data: any) => {
-    console.log(data);
-    onSubmit(data);
-  };
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(submitHandler)}>{children}</form>
+
+      <View>
+
+        <View>
+          {children}
+        </View>
+
+        <View>
+
+          <SubmitButton
+            onSubmit={onSubmit}>
+            {submitButtonText}
+          </SubmitButton>
+
+        </View>
+
+      </View>
+
     </FormProvider>
   );
 }
@@ -21,4 +37,8 @@ export default function FormProviderMono({
 interface FormProviderMonoProps {
   onSubmit: any;
   children: any;
+  /**
+   * Text to show on submit button
+   */
+  submitButtonText: string
 }

@@ -3,27 +3,50 @@ import React from "react";
 import CenterView from "../../../storybook/stories/CenterView";
 import FormProviderMono from "./FormProviderMono";
 import TextInputMono from "../TextInputMono";
-import { View } from "react-native";
-import { useFormContext } from "react-hook-form";
+import { View, Text } from "react-native";
+import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 
 storiesOf("Form", module)
-  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("Basic Example", () => {
-    const NestedInput = () => {
-      const { register } = useFormContext();
-      return (
-        <View style={{ backgroundColor: "pink" }}>
-          <input {...register("test")} />
-        </View>
-      );
-    };
+  .addDecorator((getStory) => {
     return (
-      <View>
-        <FormProviderMono>
-          <NestedInput />
-          <TextInputMono name="Mono" />
-          <input type="submit" />
-        </FormProviderMono>
-      </View>
+      <PaperProvider theme={DefaultTheme}>
+        <CenterView>
+          {getStory()}
+        </CenterView>
+      </PaperProvider>
     );
+  })
+  .add("Basic Example", () => {
+    return (<FormExample/>);
   });
+
+
+const FormExample = () => {
+  const [values, setValues] = React.useState({});
+
+  const onSubmit = (formValues) => {
+    console.log('Values', formValues);
+    setValues(formValues);
+  };
+
+  return (
+
+    <View>
+
+      <View>
+        <Text>Mono: {values.Mono}</Text>
+      </View>
+
+      <FormProviderMono
+        onSubmit={onSubmit}
+        submitButtonText='Submit'>
+
+        <TextInputMono
+          name="Mono"
+        />
+
+      </FormProviderMono>
+
+    </View>
+  );
+};
