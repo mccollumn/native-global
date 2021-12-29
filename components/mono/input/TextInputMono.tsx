@@ -1,8 +1,7 @@
 import * as React from "react";
 import { TextInput } from "react-native-paper";
 import { Controller } from "react-hook-form";
-import { View, Text } from "react-native";
-import { useStyles } from './TextInputMono.styles';
+import { FormFieldWrapper } from '../form/FormFieldWrapper';
 
 /**
  * Standard Text Input field from React Paper
@@ -18,8 +17,6 @@ export const TextInputMono = ({
   helperText,
   ...props
 }: any) => {
-
-  const styles = useStyles();
 
   const inputProps = {
     mode,
@@ -91,23 +88,20 @@ const TextInputForm = ({
 
 const TextInputMonoContainer = ({
   helperText,
+  isError,
   ...props
 }: any) => {
 
-  const styles = useStyles();
-
-
   return (
-    <View style={styles.container}>
+    <FormFieldWrapper
+      isError={isError}
+      helperText={helperText}>
+
       <TextInput
         {...props}
       />
 
-      <Text style={styles.helperText}>
-        {helperText}
-      </Text>
-
-    </View>
+    </FormFieldWrapper>
   );
 }
 
