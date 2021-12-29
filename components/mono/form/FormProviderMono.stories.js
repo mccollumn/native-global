@@ -4,16 +4,13 @@ import CenterView from "../../../storybook/stories/CenterView";
 import FormProviderMono from "./FormProviderMono";
 import TextInputMono from "../TextInputMono";
 import { View, Text } from "react-native";
-import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 
 storiesOf("Form", module)
   .addDecorator((getStory) => {
     return (
-      <PaperProvider theme={DefaultTheme}>
         <CenterView>
           {getStory()}
         </CenterView>
-      </PaperProvider>
     );
   })
   .add("Form Example", () => {
@@ -42,6 +39,7 @@ const FormExample = () => {
 
         <TextInputMono
           name="Mono"
+          label="Enter text"
         />
 
       </FormProviderMono>

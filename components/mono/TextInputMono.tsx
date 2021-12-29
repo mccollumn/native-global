@@ -1,18 +1,31 @@
 import * as React from "react";
 import { TextInput } from "react-native-paper";
 import { Controller } from "react-hook-form";
+import { styles } from './TextInputMono.styles';
 
-const TextInputMono = ({
+/**
+ * Standard Text Input field from React Paper
+ * @param onChange - Function called when user changes text
+ * @param props
+ * @param mode - Type of input style: 'flat' | 'outlined';
+ */
+export const TextInputMono = ({
   name,
   onChange=()=>{},
+  mode = 'outlined',
   ...props
 }: any) => {
+
+  const inputProps = {
+    mode,
+    ...props
+  };
 
   // No name means this component is not part of a form
   if (!name) return (
     <TextInput
       onChangeText={onChange}
-      {...props}
+      {...inputProps}
     />
   );
 
@@ -29,7 +42,7 @@ const TextInputMono = ({
         return (
           <TextInputForm
             onChange={onChange}
-            parentProps={props}
+            parentProps={inputProps}
             field={field}
             fieldState={fieldState}
           />

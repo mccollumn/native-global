@@ -2,6 +2,7 @@ import React from "react";
 import { View } from 'react-native';
 import { useForm, FormProvider } from "react-hook-form";
 import SubmitButton from '../buttons/SubmitButton';
+import { styles } from './FormProviderMono.styles';
 
 export default function FormProviderMono({
   onSubmit = () => { },
@@ -15,11 +16,11 @@ export default function FormProviderMono({
 
       <View>
 
-        <View>
+        <View style={styles.container}>
           {children}
         </View>
 
-        <View>
+        <View style={styles.container}>
 
           <SubmitButton
             onSubmit={onSubmit}>
