@@ -96,6 +96,7 @@ const TextInputMonoContainer = ({
 
   const styles = useStyles();
 
+
   return (
     <View style={styles.container}>
       <TextInput

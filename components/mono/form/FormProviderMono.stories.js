@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import CenterView from "../../../storybook/stories/CenterView";
 import FormProviderMono from "./FormProviderMono";
-import TextInputMono from "../TextInputMono";
+import TextInputMono from "../input/TextInputMono";
 import { View, Text } from "react-native";
 
 storiesOf("Form", module)

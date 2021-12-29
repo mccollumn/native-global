@@ -1,6 +1,6 @@
 import * as React from 'react';
 import FormProviderMono from './FormProviderMono';
-import TextInputMono from '../TextInputMono';
+import TextInputMono from '../input/TextInputMono';
 import {
   fireEvent,
   render,

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { GLOBAL } from '../../theme';
+import { GLOBAL } from '../../../theme';
 import { useTheme } from 'react-native-paper';
 
 export const styles = StyleSheet.create({
