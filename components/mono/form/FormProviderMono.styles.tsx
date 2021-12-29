@@ -3,6 +3,6 @@ import { GLOBAL } from '../../../theme';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingVertical: GLOBAL.container.padding
+    marginVertical: GLOBAL.container.margin
   }
 });

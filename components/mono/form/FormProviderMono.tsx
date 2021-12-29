@@ -16,7 +16,7 @@ export default function FormProviderMono({
 
       <View>
 
-        <View style={styles.container}>
+        <View>
           {children}
         </View>
 

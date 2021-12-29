@@ -1,7 +1,8 @@
 import * as React from "react";
 import { TextInput } from "react-native-paper";
 import { Controller } from "react-hook-form";
-import { styles } from './TextInputMono.styles';
+import { View, Text } from "react-native";
+import { useStyles } from './TextInputMono.styles';
 
 /**
  * Standard Text Input field from React Paper
@@ -12,18 +13,23 @@ import { styles } from './TextInputMono.styles';
 export const TextInputMono = ({
   name,
   onChange=()=>{},
-  mode = 'outlined',
+  mode,
+  style={},
+  helperText,
   ...props
 }: any) => {
 
+  const styles = useStyles();
+
   const inputProps = {
     mode,
+    helperText,
     ...props
   };
 
   // No name means this component is not part of a form
   if (!name) return (
-    <TextInput
+    <TextInputMonoContainer
       onChangeText={onChange}
       {...inputProps}
     />
@@ -45,6 +51,7 @@ export const TextInputMono = ({
             parentProps={inputProps}
             field={field}
             fieldState={fieldState}
+            helperText={helperText}
           />
         );
       }}
@@ -53,10 +60,11 @@ export const TextInputMono = ({
 };
 
 const TextInputForm = ({
-  onChange=()=>{},
+  onChange = () => { },
   parentProps = {},
   field = {},
-  fieldState = {}
+  fieldState = {},
+  helperText
 }: any) => {
 
   const {
@@ -70,13 +78,35 @@ const TextInputForm = ({
   }
 
   return (
-    <TextInput
+    <TextInputMonoContainer
       {...parentProps}
       onBlur={onBlur}
       onChangeText={changeHandler}
       inputRef={ref}
       value={value || ""}
+      helperText={helperText}
     />
+  );
+}
+
+const TextInputMonoContainer = ({
+  helperText,
+  ...props
+}: any) => {
+
+  const styles = useStyles();
+
+  return (
+    <View style={styles.container}>
+      <TextInput
+        {...props}
+      />
+
+      <Text style={styles.helperText}>
+        {helperText}
+      </Text>
+
+    </View>
   );
 }
 

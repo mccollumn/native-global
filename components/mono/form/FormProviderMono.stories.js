@@ -40,6 +40,7 @@ const FormExample = () => {
         <TextInputMono
           name="Mono"
           label="Enter text"
+          helperText="Enter text here"
         />
 
       </FormProviderMono>

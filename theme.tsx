@@ -12,6 +12,7 @@ export const theme = {
 
 export const GLOBAL = {
   container: {
-    padding: 12
+    padding: 12,
+    margin: 12
   }
 };
