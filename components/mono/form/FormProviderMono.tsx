@@ -4,11 +4,12 @@ import { useForm, FormProvider } from "react-hook-form";
 import SubmitButton from '../buttons/SubmitButton';
 import { styles } from './FormProviderMono.styles';
 
-export default function FormProviderMono({
+export const FormProviderMono = ({
   onSubmit = () => { },
-  submitButtonText='',
+  onError = () => { },
+  submitButtonText = '',
   children,
-}: FormProviderMonoProps) {
+}: FormProviderMonoProps) => {
   const methods = useForm();
 
   return (
@@ -23,6 +24,7 @@ export default function FormProviderMono({
         <View style={styles.container}>
 
           <SubmitButton
+            onError={onError}
             onSubmit={onSubmit}>
             {submitButtonText}
           </SubmitButton>
@@ -35,11 +37,14 @@ export default function FormProviderMono({
   );
 }
 
+export default FormProviderMono;
+
 interface FormProviderMonoProps {
-  onSubmit: any;
+  onSubmit?: any;
+  onError?: any;
   children: any;
   /**
    * Text to show on submit button
    */
-  submitButtonText: string
+  submitButtonText?: string
 }

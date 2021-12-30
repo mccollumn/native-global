@@ -41,6 +41,9 @@ const FormExample = () => {
           name="Mono"
           label="Enter text"
           helperText="Enter text here"
+          rules={{
+            required: 'This field is required'
+          }}
         />
 
       </FormProviderMono>

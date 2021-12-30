@@ -15,6 +15,7 @@ export const TextInputMono = ({
   mode,
   style={},
   helperText,
+  rules,
   ...props
 }: any) => {
 
@@ -36,6 +37,7 @@ export const TextInputMono = ({
   return (
     <Controller
       name={name}
+      rules={rules}
       render={({
         field,
         fieldState,
@@ -68,8 +70,12 @@ const TextInputForm = ({
     onChange: onFieldChange, onBlur, value, name, ref
   } = field;
 
+  const {
+    error = {}
+  } = fieldState;
+
   // Form and parent change handler should be called
-  const changeHandler = (fieldValue:any) => {
+  const changeHandler = (fieldValue: any) => {
     onFieldChange(fieldValue);
     onChange(fieldValue);
   }
@@ -81,7 +87,8 @@ const TextInputForm = ({
       onChangeText={changeHandler}
       inputRef={ref}
       value={value || ""}
-      helperText={helperText}
+      helperText={error.message || helperText}
+      isError={!!error.message}
     />
   );
 }
@@ -99,6 +106,7 @@ const TextInputMonoContainer = ({
 
       <TextInput
         {...props}
+        error={isError}
       />
 
     </FormFieldWrapper>
