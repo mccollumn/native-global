@@ -8,11 +8,8 @@ import Navigation from "./navigation";
 
 import StorybookUI from "./storybook";
 
-import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
-
-const theme = {
-  ...DefaultTheme,
-};
+import { Provider as PaperProvider } from "react-native-paper";
+import { theme } from './theme';
 
 import {
   LOAD_STORYBOOK,

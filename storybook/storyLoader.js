@@ -5,12 +5,12 @@
 
 function loadStories() {
   require("../components/mono/form/FormProviderMono.stories");
-  require("../components/mono/TextInputMono.stories");
+  require("../components/mono/input/TextInputMono.stories");
 }
 
 const stories = [
   "../components/mono/form/FormProviderMono.stories",
-  "../components/mono/TextInputMono.stories",
+  "../components/mono/input/TextInputMono.stories",
 ];
 
 module.exports = {
