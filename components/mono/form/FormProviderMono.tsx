@@ -8,9 +8,13 @@ export const FormProviderMono = ({
   onSubmit = () => { },
   onError = () => { },
   submitButtonText = '',
+  defaultValues = {},
   children,
 }: FormProviderMonoProps) => {
-  const methods = useForm();
+
+  const methods = useForm({
+    defaultValues
+  });
 
   return (
     <FormProvider {...methods}>
@@ -26,7 +30,9 @@ export const FormProviderMono = ({
           <SubmitButton
             onError={onError}
             onSubmit={onSubmit}>
+
             {submitButtonText}
+
           </SubmitButton>
 
         </View>
@@ -40,11 +46,25 @@ export const FormProviderMono = ({
 export default FormProviderMono;
 
 interface FormProviderMonoProps {
+  /**
+   * Called on form submit
+   */
   onSubmit?: any;
+  /**
+   * Called on form error
+   */
   onError?: any;
-  children: any;
   /**
    * Text to show on submit button
    */
-  submitButtonText?: string
+  submitButtonText?: string;
+  /**
+   * Base form object
+   * Form elements will be populated based on this object
+   */
+  defaultValues?: Object;
+  /**
+   * All child elements
+   */
+  children: any;
 }

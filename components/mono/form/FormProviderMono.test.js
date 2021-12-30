@@ -56,5 +56,46 @@ describe('<FormProviderMono/>', () => {
     });
 
   });
+
+  it('Default values populate', async () => {
+    const mockSubmit = jest.fn();
+    const defaultText = 'default text';
+
+    const submitHandler = (formStuff) => {
+      mockSubmit(formStuff);
+    };
+
+    const defaultValues = {
+      textfield: defaultText
+    };
+
+    const {
+      getByText
+    } = render(
+      <FormProviderMono
+        submitButtonText='Submit'
+        defaultValues={defaultValues}
+        onSubmit={submitHandler}>
+
+        <TextInputMono
+          testID='input'
+          name='textfield'
+        />
+
+      </FormProviderMono>
+    );
+
+    // Submit form
+    fireEvent.press(
+      getByText('Submit'),
+    );
+
+    await waitFor(() => {
+      expect(mockSubmit).toBeCalledWith({
+        textfield: defaultText
+      });
+    });
+
+  });
 });
 

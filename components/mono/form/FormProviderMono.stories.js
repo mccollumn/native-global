@@ -25,20 +25,36 @@ const FormExample = () => {
     setValues(formValues);
   };
 
+  const defaultValues = {
+    textField1: '',
+    textField2: 'Text 2 default value'
+  };
+
   return (
 
     <View>
 
       <View>
-        <Text>Submit Value: {values.Mono}</Text>
+        <Text>Submit Value 1: {values.textField1}</Text>
+        <Text>Submit Value 2: {values.textField2}</Text>
       </View>
 
       <FormProviderMono
+        defaultValues={defaultValues}
         onSubmit={onSubmit}
         submitButtonText='Submit'>
 
         <TextInputMono
-          name="Mono"
+          name="textField1"
+          label="Enter text"
+          helperText="Enter text here"
+          rules={{
+            required: 'This field is required'
+          }}
+        />
+
+        <TextInputMono
+          name="textField2"
           label="Enter text"
           helperText="Enter text here"
           rules={{
