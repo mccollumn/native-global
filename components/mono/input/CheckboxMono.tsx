@@ -85,6 +85,7 @@ const CheckboxMonoForm = ({
     onChange(fieldValue);
   }
 
+  // Set defaut value from form if not set
   React.useEffect(() => {
     if(value === undefined) {
       onFieldChange(parentProps.isChecked);
