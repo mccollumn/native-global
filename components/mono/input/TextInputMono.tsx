@@ -139,6 +139,10 @@ interface TextInputMonoProps {
    * React-hook-form validation rules
    */
   rules?: any;
+  /**
+   * All other types
+   */
+  [x: string]: any;
 }
 
 export default TextInputMono;
