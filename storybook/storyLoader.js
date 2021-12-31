@@ -6,12 +6,14 @@
 function loadStories() {
   require("../components/mono/form/FormProviderMono.stories");
   require("../components/mono/input/CheckboxMono.stories");
+  require("../components/mono/input/PickerMono.stories");
   require("../components/mono/input/TextInputMono.stories");
 }
 
 const stories = [
   "../components/mono/form/FormProviderMono.stories",
   "../components/mono/input/CheckboxMono.stories",
+  "../components/mono/input/PickerMono.stories",
   "../components/mono/input/TextInputMono.stories",
 ];
 
