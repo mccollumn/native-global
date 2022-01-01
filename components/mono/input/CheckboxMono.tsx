@@ -1,31 +1,40 @@
 import * as React from "react";
-import { TextInput } from "react-native-paper";
+import { Checkbox } from "react-native-paper";
 import { Controller } from "react-hook-form";
 import { FormFieldWrapper } from '../form/FormFieldWrapper';
+import { useStyles } from './CheckboxMono.styles';
 
 /**
- * Standard Text Input field from React Paper
+ * Standard Checkbox form field from React Paper
  */
-export const TextInputMono = ({
+export const CheckboxMono = ({
   name,
   onChange = () => { },
-  mode,
+  checked = false,
   style = {},
-  helperText,
   rules,
+  label,
   ...props
-}: TextInputMonoProps) => {
+}: CheckboxMonoProps) => {
+
+  const [isChecked, setIsChecked] = React.useState(checked);
+
+  // Update check status if parent status is changed
+  React.useEffect(() => {
+    setIsChecked(checked);
+  }, [checked]);
 
   const inputProps = {
-    mode,
-    helperText,
+    label,
+    onChange,
+    isChecked,
+    setIsChecked,
     ...props
   };
 
   // No name means this component is not part of a form
   if (!name) return (
-    <TextInputMonoContainer
-      onChangeText={onChange}
+    <CheckboxMonoContainer
       {...inputProps}
     />
   );
@@ -42,12 +51,11 @@ export const TextInputMono = ({
       }) => {
 
         return (
-          <TextInputForm
+          <CheckboxMonoForm
             onChange={onChange}
             parentProps={inputProps}
             field={field}
             fieldState={fieldState}
-            helperText={helperText}
           />
         );
       }}
@@ -55,8 +63,8 @@ export const TextInputMono = ({
   );
 };
 
-const TextInputForm = ({
-  onChange = () => { },
+const CheckboxMonoForm = ({
+  onChange = () => {},
   parentProps = {},
   field = {},
   fieldState = {},
@@ -77,60 +85,88 @@ const TextInputForm = ({
     onChange(fieldValue);
   }
 
+  // Set defaut value from form if not set
+  React.useEffect(() => {
+    if(value === undefined) {
+      onFieldChange(parentProps.isChecked);
+    }
+  }, [parentProps.isChecked, value]);
+
   return (
-    <TextInputMonoContainer
+    <CheckboxMonoContainer
       {...parentProps}
       onBlur={onBlur}
-      onChangeText={changeHandler}
+      onChange={changeHandler}
       inputRef={ref}
-      value={value || ""}
       helperText={error.message || helperText}
       isError={!!error.message}
+      isChecked={value || false}
     />
   );
 }
 
-const TextInputMonoContainer = ({
-  helperText,
+const CheckboxMonoContainer = ({
+  onChange = () => { },
+  isChecked,
+  setIsChecked,
   isError,
+  label,
+  style,
+  helperText,
   ...props
 }: any) => {
 
+  const styles = useStyles(isError);
+
+  const changeHandler = () => {
+    const checkedVal = !isChecked;
+    setIsChecked(checkedVal);
+    onChange(checkedVal);
+  };
+
   return (
     <FormFieldWrapper
-      isError={isError}
-      helperText={helperText}>
+      isError={isError}>
 
-      <TextInput
-        {...props}
+      <Checkbox.Item
+        onPress={changeHandler}
+        status={STATUS[isChecked]}
+        label={label}
+        style={{
+          ...styles.checkBox,
+          ...style
+        }}
         error={isError}
+        {...props}
       />
 
     </FormFieldWrapper>
   );
 }
 
-interface TextInputMonoProps {
+// Checked state to bool
+const STATUS: any = {
+  false: 'unchecked',
+  true: 'checked'
+}
+
+interface CheckboxMonoProps {
   /**
    * Display label
    */
   label?: string;
   /**
-   * Text to display below element
-   */
-  helperText?: string;
-  /**
    * Name of input element in form state
    */
   name?: string;
   /**
-   * Handle Change
+   * Handle checkbox status changed
    */
   onChange?: Function;
   /**
-   * Type of visual mode to display
+   * If checkbox is checked or not
    */
-  mode?: 'flat' | 'outlined';
+  checked?: Boolean;
   /**
    * Css style on element
    */
@@ -145,4 +181,4 @@ interface TextInputMonoProps {
   [x: string]: any;
 }
 
-export default TextInputMono;
+export default CheckboxMono;
