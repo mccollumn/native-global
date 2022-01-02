@@ -4,32 +4,40 @@ import { useStyles } from './AppLayout.styles';
 import { AppBarMono } from '../components/mono/navigation/AppBarMono';
 
 export const AppLayout = ({
-
-}) => {
+  children
+}: any) => {
   const styles = useStyles();
-
-  const actions = [
-    {
-      icon: 'label',
-      onPress: () => {}
-    },
-    {
-      icon: 'mail',
-      onPress: () => {}
-    },
-    {
-      icon: 'menu',
-      onPress: () => {}
-    }
-  ];
 
   return (
     <View style={styles.container}>
-      <AppBarMono actions={actions} />
 
-      <Text>
-        Sup Main App Layout
-      </Text>
+      {children}
+
+      <AppBarMono
+        actions={bottomActions}
+      />
+
     </View >
   )
 };
+
+const bottomActions = [
+  {
+    id: 'LABEL',
+    accessibilityLabel: 'Access Label',
+    icon: 'label',
+    onPress: () => { }
+  },
+  {
+    id: 'MAIL',
+    accessibilityLabel: 'Send Message',
+    icon: 'mail',
+    onPress: () => { },
+  },
+  {
+    id: 'LIST',
+    accessibilityLabel: 'List items',
+    icon: 'format-list-bulleted',
+    onPress: () => { },
+  }
+];

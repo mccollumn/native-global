@@ -7,7 +7,10 @@ export const useStyles = () => {
 
   return StyleSheet.create({
     container: {
-      height: '100%'
+      height: '100%',
+      backgroundColor: theme.colors.background,
+      justifyContent: 'center',
+      alignItems: 'center'
     }
   });
 };

@@ -2,15 +2,15 @@ import { StyleSheet } from 'react-native';
 import { GLOBAL } from '../../../theme';
 import { useTheme } from 'react-native-paper';
 
-export const useStyles = () => {
-  const theme = useTheme();
+export const useStyles = (color: string) => {
+  const theme: any = useTheme();
 
   return StyleSheet.create({
     container: {
 
     },
     bottom: {
-      backgroundColor: theme.colors.primary,
+      backgroundColor: theme.colors[color],
       position: 'absolute',
       left: 0,
       right: 0,
