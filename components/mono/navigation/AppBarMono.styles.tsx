@@ -38,7 +38,8 @@ export const useStyles = ({
       justifyContent: 'center',
       flexGrow: 1,
       flex: 1,
-      alignContent: 'space-between'
+      alignContent: 'space-between',
+      marginHorizontal: '25%'
     },
     bottomActionIcon: {
       flex: 1,

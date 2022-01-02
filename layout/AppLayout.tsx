@@ -31,21 +31,15 @@ export const AppLayout = ({
 
 const topActions = [
   {
-    id: 'LABEL',
-    accessibilityLabel: 'Access Label',
-    icon: 'label',
+    id: 'SEARCH',
+    accessibilityLabel: 'Search',
+    icon: 'magnify',
     onPress: () => { }
   },
   {
     id: 'MAIL',
-    accessibilityLabel: 'Send Message',
-    icon: 'mail',
-    onPress: () => { },
-  },
-  {
-    id: 'LIST',
-    accessibilityLabel: 'List items',
-    icon: 'format-list-bulleted',
+    accessibilityLabel: 'Account',
+    icon: 'account',
     onPress: () => { },
   }
 ];
