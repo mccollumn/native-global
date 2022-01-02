@@ -2,10 +2,10 @@ import { StyleSheet } from 'react-native';
 import { GLOBAL } from '../../../theme';
 import { useTheme } from 'react-native-paper';
 
-export const useStyles = (
-  color: string,
-  style={}
-) => {
+export const useStyles = ({
+  color = '',
+  style = {}
+}: any) => {
   const theme: any = useTheme();
 
   return StyleSheet.create({
@@ -27,7 +27,25 @@ export const useStyles = (
       right: 0,
       top: 0,
       ...style
+    },
+    topActions: {
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      flexGrow: 1,
+    },
+    bottomActions: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      flexGrow: 1,
+      flex: 1,
+      alignContent: 'space-between'
+    },
+    bottomActionIcon: {
+      flex: 1,
+      ...style
+    },
+    topActionIcon: {
+      ...style
     }
-
   });
 };

@@ -11,15 +11,44 @@ export const AppLayout = ({
   return (
     <View style={styles.container}>
 
+      <AppBarMono
+        position="top"
+        //backActionPress={() => { }}
+        menuActionPress={() => { }}
+        actions={topActions}
+      />
+
       {children}
 
       <AppBarMono
+        position="bottom"
         actions={bottomActions}
       />
 
     </View >
   )
 };
+
+const topActions = [
+  {
+    id: 'LABEL',
+    accessibilityLabel: 'Access Label',
+    icon: 'label',
+    onPress: () => { }
+  },
+  {
+    id: 'MAIL',
+    accessibilityLabel: 'Send Message',
+    icon: 'mail',
+    onPress: () => { },
+  },
+  {
+    id: 'LIST',
+    accessibilityLabel: 'List items',
+    icon: 'format-list-bulleted',
+    onPress: () => { },
+  }
+];
 
 const bottomActions = [
   {
