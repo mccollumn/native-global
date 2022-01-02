@@ -12,7 +12,7 @@ export const AppBarMono = ({
 }: AppBarMonoProps) => {
 
   const [selected, setSelected]  = React.useState();
-  const styles: any = useStyles(color);
+  const styles: any = useStyles(color, style);
 
   // Cast props to any to avoid typescript errors
   const anyProps: any = props;
@@ -23,10 +23,7 @@ export const AppBarMono = ({
 
   return (
     <Appbar
-      style={{
-        ...styles[position],
-        ...style
-      }}
+      style={styles[position]}
       {...anyProps}>
 
       <BarContent
@@ -89,6 +86,9 @@ const ActionItem = ({
 
   return (
     <Appbar.Action
+      style={{
+        marginHorizontal: 24
+      }}
       icon={icon}
       onPress={pressHandler}
       color={color}
