@@ -37,7 +37,7 @@ const topActions = [
     onPress: () => { }
   },
   {
-    id: 'MAIL',
+    id: 'ACCOUNT',
     accessibilityLabel: 'Account',
     icon: 'account',
     onPress: () => { },
@@ -61,6 +61,12 @@ const bottomActions = [
     id: 'LIST',
     accessibilityLabel: 'List items',
     icon: 'format-list-bulleted',
+    onPress: () => { },
+  },
+  {
+    id: 'SETTING',
+    accessibilityLabel: 'Settings',
+    icon: 'cog',
     onPress: () => { },
   }
 ];

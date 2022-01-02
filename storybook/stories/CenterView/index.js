@@ -3,35 +3,38 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Provider as PaperProvider } from "react-native-paper";
 import { theme } from '../../../theme';
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function CenterView({
   children,
   styles = {}
 }) {
   return (
-    <PaperProvider theme={theme}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexGrow: 1,
-          margin: 24,
-          height: '100%',
-          ...styles
-        }}>
+    <SafeAreaProvider>
+      <PaperProvider theme={theme}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexGrow: 1,
+            margin: 24,
+            height: '100%',
+            ...styles
+          }}>
 
-        <View style={{
-          width: '100%',
-          height: '100%',
-        }}>
+          <View style={{
+            width: '100%',
+            height: '100%',
+          }}>
 
-          {children}
+            {children}
+
+          </View>
 
         </View>
-
-      </View>
-    </PaperProvider>
+      </PaperProvider>
+    </SafeAreaProvider>
   );
 }
 
