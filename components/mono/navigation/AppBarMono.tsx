@@ -15,6 +15,7 @@ export const AppBarMono = ({
   actions = [],
   backActionPress,
   menuActionPress,
+  actionPress,
   ...props
 }: AppBarMonoProps) => {
 
@@ -54,6 +55,7 @@ export const AppBarMono = ({
           actions={actions}
           selected={selected}
           setSelected={setSelected}
+          actionPress={actionPress}
         />
 
       </View>
@@ -108,20 +110,26 @@ const BarContent = ({
   actions = [],
   position,
   selected,
-  setSelected = () => { }
+  setSelected = () => { },
+  actionPress = () => { },
 }: any) => {
   if (!actions.length) {
     return null;
   }
 
-  return actions.map((action: any, index: number) => (
-    <ActionItem
-      key={`action-item-${position}-${index}`}
-      selected={selected}
-      setSelected={setSelected}
-      position={position}
-      {...action} />
-  ));
+  return actions.map((action: any, index: number) => {
+    return (
+      <ActionItem
+        key={`action-item-${position}-${index}`}
+        selected={selected}
+        setSelected={setSelected}
+        position={position}
+        action={action}
+        actionPress={actionPress}
+        {...action}
+      />
+    );
+  });
 };
 
 /**
@@ -136,10 +144,10 @@ const ActionItem = ({
   setSelected = () => { },
   accessibilityLabel,
   style = {},
-  position = "bottom"
+  position = "bottom",
+  action = {},
+  actionPress = () => {}
 }: any) => {
-
-  // position
 
   const theme: any = useTheme();
   let color = theme.colors[iconColor];
@@ -150,6 +158,7 @@ const ActionItem = ({
   }
 
   const pressHandler = () => {
+    actionPress(action);
     onPress(id);
     setSelected(id);
   }
@@ -210,6 +219,10 @@ export interface AppBarMonoProps {
    * Display menu icon and handle press
    */
   menuActionPress?: any;
+  /**
+   * Return the action was pressed
+   */
+  actionPress?: Function;
   /**
    * Which theme color to use
    */

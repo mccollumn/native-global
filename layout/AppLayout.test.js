@@ -1,29 +1,46 @@
-import { storiesOf } from "@storybook/react-native";
-import React from "react";
-import CenterView from "../storybook/stories/CenterView";
-import { View, Text } from 'react-native';
+import React from 'react';
 import { AppLayout } from './AppLayout';
+import {
+  fireEvent,
+  render,
+  waitFor
+} from '@testing-library/react-native';
 
-storiesOf("App Layout", module)
-  .addDecorator((getStory) => (
-    <CenterView styles={{
-      margin: 0,
-      marginTop: 24
-    }}>
-      {getStory()}
-    </CenterView>
-  ))
-  .add("Layout", () => {
-    return (
+describe('<AppLayout/>', () => {
+  it('Should return which navigation item was pressed by user', async () => {
+    const mockNavigationPress = jest.fn();
+
+    const {
+      getByTestId,
+      getByText,
+      queryByTestId,
+      toJSON,
+      findByTestId,
+      getByLabelText,
+      findByLabelText
+    } = render(
       <AppLayout
         topActions={topActions}
         bottomActions={bottomActions}
-        navigationPress={(action, type) => {
-          console.log('const van press', action, type);
-        }}
+        navigationPress={mockNavigationPress}
       />
     );
+
+    const icon = await findByLabelText(
+      bottomActions[1].accessibilityLabel
+    );
+
+    fireEvent.press(
+      icon
+    );
+
+    expect(mockNavigationPress).toBeCalledWith(
+      bottomActions[1],
+      'bottom'
+    );
+
   });
+});
 
 const topActions = [
   {
