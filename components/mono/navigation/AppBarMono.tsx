@@ -16,10 +16,10 @@ export const AppBarMono = ({
   backActionPress,
   menuActionPress,
   actionPress,
+  selectedAction,
   ...props
 }: AppBarMonoProps) => {
 
-  const [selected, setSelected] = React.useState();
   const styles: any = useStyles({color, style});
 
   // Cast props to any to avoid typescript errors
@@ -53,9 +53,8 @@ export const AppBarMono = ({
         <BarContent
           position={position}
           actions={actions}
-          selected={selected}
-          setSelected={setSelected}
           actionPress={actionPress}
+          selectedAction={selectedAction}
         />
 
       </View>
@@ -109,9 +108,8 @@ const MenuAction = ({
 const BarContent = ({
   actions = [],
   position,
-  selected,
-  setSelected = () => { },
   actionPress = () => { },
+  selectedAction
 }: any) => {
   if (!actions.length) {
     return null;
@@ -121,11 +119,10 @@ const BarContent = ({
     return (
       <ActionItem
         key={`action-item-${position}-${index}`}
-        selected={selected}
-        setSelected={setSelected}
         position={position}
         action={action}
         actionPress={actionPress}
+        selectedAction={selectedAction}
         {...action}
       />
     );
@@ -140,27 +137,26 @@ const ActionItem = ({
   iconColor = 'surface',
   id,
   onPress = () => { },
-  selected,
-  setSelected = () => { },
   accessibilityLabel,
   style = {},
   position = "bottom",
   action = {},
-  actionPress = () => {}
+  actionPress = () => {},
+  selectedAction
 }: any) => {
 
   const theme: any = useTheme();
   let color = theme.colors[iconColor];
   const styles: any = useStyles({ style });
+  const isSelected = (action === selectedAction);
 
-  if (id && id === selected) {
+  if (isSelected) {
     color = theme.colors.accent;
   }
 
   const pressHandler = () => {
     actionPress(action);
     onPress(id);
-    setSelected(id);
   }
 
   return (
@@ -169,6 +165,7 @@ const ActionItem = ({
       icon={icon}
       onPress={pressHandler}
       color={color}
+      testID={`${accessibilityLabel}-${isSelected}`}
       accessibilityLabel={accessibilityLabel}
     />
   )
@@ -223,6 +220,10 @@ export interface AppBarMonoProps {
    * Return the action was pressed
    */
   actionPress?: Function;
+  /**
+   * Navigation action currently in a selected state
+   */
+  selectedAction?: Object;
   /**
    * Which theme color to use
    */

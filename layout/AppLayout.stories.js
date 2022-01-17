@@ -15,15 +15,29 @@ storiesOf("App Layout", module)
   ))
   .add("Layout", () => {
     return (
-      <AppLayout
-        topActions={topActions}
-        bottomActions={bottomActions}
-        navigationPress={(action, type) => {
-          console.log('const van press', action, type);
-        }}
-      />
+      <AppLayoutConsumer/>
     );
   });
+
+const AppLayoutConsumer = ({
+  
+}) => {
+  const [selectedAction, setSelectedAction] = React.useState();
+
+  const handleNavigationSelect = (action, type) => {
+    console.log('Handling action', action, type);
+    setSelectedAction(action);
+  };
+
+  return (
+    <AppLayout
+      topActions={topActions}
+      bottomActions={bottomActions}
+      navigationPress={handleNavigationSelect}
+      selectedAction={selectedAction}
+    />
+  );
+};
 
 const topActions = [
   {

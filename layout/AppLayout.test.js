@@ -7,8 +7,13 @@ import {
 } from '@testing-library/react-native';
 
 describe('<AppLayout/>', () => {
-  it('Should return which navigation item was pressed by user', async () => {
+  it('Should set navigation item was pressed by user', async () => {
     const mockNavigationPress = jest.fn();
+
+    const handleNavigationSelect = (action, type) => {
+      console.log('Handling action', action, type);
+      mockNavigationPress(action, type);
+    };
 
     const {
       getByTestId,
@@ -22,9 +27,17 @@ describe('<AppLayout/>', () => {
       <AppLayout
         topActions={topActions}
         bottomActions={bottomActions}
-        navigationPress={mockNavigationPress}
+        navigationPress={handleNavigationSelect}
+        selectedAction={bottomActions[1]}
       />
     );
+
+    const selectedAction = getByTestId(
+      `${bottomActions[1].accessibilityLabel}-true`
+    );
+
+    expect(selectedAction.props.accessibilityLabel)
+      .toEqual(bottomActions[1].accessibilityLabel);
 
     const icon = await findByLabelText(
       bottomActions[1].accessibilityLabel

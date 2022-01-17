@@ -12,6 +12,7 @@ export const AppLayout = ({
   backActionPress,
   navigationPress = () => { },
   menuActionPress = () => { },
+  selectedAction,
   children
 }: AppLayoutProps) => {
   const styles = useStyles();
@@ -40,6 +41,7 @@ export const AppLayout = ({
         actionPress={topPressHandler}
         actions={topActions}
         menuActionPress={menuActionPress}
+        selectedAction={selectedAction}
       />
 
       {children}
@@ -48,6 +50,7 @@ export const AppLayout = ({
         position="bottom"
         actionPress={bottomPressHandler}
         actions={bottomActions}
+        selectedAction={selectedAction}
       />
 
     </View >
@@ -78,6 +81,10 @@ interface AppLayoutProps {
    * Display menu icon on top left and returns on open drawer
    */
   menuActionPress?: Function;
+  /**
+   * Navigation action currently in a selected state
+   */
+  selectedAction?: Object;
   /**
    * All child items
    */
