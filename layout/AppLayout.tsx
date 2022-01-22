@@ -5,6 +5,56 @@ import {
   AppBarMono,
   AppBarActionProps
 } from '../components/mono/navigation/AppBarMono';
+import {
+  DrawerItem,
+  DrawerContentScrollView,
+  createDrawerNavigator
+} from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+export const AppNavigation = ({
+  topActions = [],
+  bottomActions = [],
+  backActionPress,
+  navigationPress = () => { },
+  menuActionPress = () => { },
+  selectedAction,
+  children
+}: AppLayoutProps) => {
+
+  return (
+    <Stack.Navigator initialRouteName="Feed">
+      <Stack.Screen
+        name="Feed"
+        component={Feed}
+        options={{ headerTitle: 'Twitter' }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={{ headerTitle: 'Tweet' }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const Feed = () => {
+  return (
+    <Text>
+      Feed Me
+    </Text>
+  );
+};
+
+const Details = () => {
+  return (
+    <Text>
+      Details Me
+    </Text>
+  );
+};
 
 export const AppLayout = ({
   topActions = [],

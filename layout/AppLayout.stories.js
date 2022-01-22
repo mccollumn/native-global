@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react-native";
 import React from "react";
 import CenterView from "../storybook/stories/CenterView";
 import { View, Text } from 'react-native';
-import { AppLayout } from './AppLayout';
+import { AppLayout, AppNavigation } from './AppLayout';
 
 storiesOf("App Layout", module)
   .addDecorator((getStory) => (
@@ -17,7 +17,14 @@ storiesOf("App Layout", module)
     return (
       <AppLayoutConsumer/>
     );
+  })
+  .add("Navigation", () => {
+    return (
+      <AppNavigation/>
+    );
   });
+
+//AppNavigation
 
 const AppLayoutConsumer = ({
   

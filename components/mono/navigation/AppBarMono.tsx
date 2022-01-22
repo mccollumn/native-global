@@ -31,6 +31,7 @@ export const AppBarMono = ({
     !!backActionPress,
     !!menuActionPress
   ].some(s => s);
+
   if (!displayMenu) {
     return null;
   }
