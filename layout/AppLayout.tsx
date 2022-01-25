@@ -40,7 +40,16 @@ export const AppNavigation = ({
   );
 };
 
-const Feed = () => {
+const Feed = ({
+  navigation
+}:any) => {
+  console.log('dsfsd', navigation);
+
+  // This example is how we redirect
+  React.useEffect(() => {
+    navigation.push('Details');
+  }, [])
+
   return (
     <Text>
       Feed Me
