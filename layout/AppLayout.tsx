@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { useStyles } from './AppLayout.styles';
 import {
   AppBarMono,
@@ -8,11 +8,18 @@ import {
 import {
   DrawerItem,
   DrawerContentScrollView,
-  createDrawerNavigator
+  createDrawerNavigator,
+  DrawerContent,
+  DrawerItemList,
+  DrawerNavigationProp
 } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+import {
+  //Drawer
+} from 'react-native-paper';
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export const AppNavigation = ({
   topActions = [],
@@ -25,43 +32,111 @@ export const AppNavigation = ({
 }: AppLayoutProps) => {
 
   return (
-    <Stack.Navigator initialRouteName="Feed">
-      <Stack.Screen
-        name="Feed"
-        component={Feed}
-        options={{ headerTitle: 'Twitter' }}
-      />
-      <Stack.Screen
-        name="Details"
-        component={Details}
-        options={{ headerTitle: 'Tweet' }}
-      />
-    </Stack.Navigator>
+    <>
+
+      <Drawer.Navigator
+        initialRouteName="Details"
+        screenOptions={{
+          header: (props) => {
+            console.log('Me Header Props', props);
+
+            return (
+              <View><Text>ddd</Text></View>
+            )
+          }
+        }}>
+
+        <Drawer.Screen
+          name="Feed"
+          component={Feed}
+        />
+
+        <Drawer.Screen
+          name="Details"
+          component={Details}
+        />
+
+      </Drawer.Navigator>
+
+    </>
   );
 };
 
+const CustomDrawerContent = (props:any) => {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem
+        label="Close drawer"
+        onPress={() => props.navigation.closeDrawer()}
+      />
+      <DrawerItem
+        label="Toggle drawer"
+        onPress={() => props.navigation.toggleDrawer()}
+      />
+    </DrawerContentScrollView>
+  );
+}
+
 const Feed = ({
-  navigation
-}:any) => {
-  console.log('dsfsd', navigation);
+  navigation,
+  moreText = ''
+}: any) => {
+  console.log('In Feed', navigation);
 
   // This example is how we redirect
   React.useEffect(() => {
-    navigation.push('Details');
+    //navigation.push('Details');
   }, [])
 
   return (
-    <Text>
-      Feed Me
-    </Text>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'aqua'
+      }}>
+
+      <Text>
+        Feed Me Now {moreText}
+      </Text>
+
+      <Button
+        title="Open drawer"
+        onPress={() => navigation.openDrawer()}
+      />
+
+      <Button
+        title="Toggle drawer"
+        onPress={() => navigation.toggleDrawer()}
+      />
+
+    </View>
   );
 };
 
-const Details = () => {
+const Details = ({
+  navigation
+}:any) => {
   return (
-    <Text>
-      Details Me
-    </Text>
+    <View>
+
+      <Text>
+        Details Me Fool
+      </Text>
+
+      <Button
+        title="Open drawer"
+        onPress={() => navigation.openDrawer()}
+      />
+
+      <Button
+        title="Toggle drawer"
+        onPress={() => navigation.toggleDrawer()}
+      />
+
+    </View>
   );
 };
 
@@ -92,28 +167,60 @@ export const AppLayout = ({
   };
 
   return (
-    <View style={styles.container}>
 
-      <AppBarMono
-        position="top"
-        backActionPress={backActionPress}
-        actionPress={topPressHandler}
-        actions={topActions}
-        menuActionPress={menuActionPress}
-        selectedAction={selectedAction}
+    <Drawer.Navigator
+      initialRouteName="Details"
+      screenOptions={{
+        header: ({ navigation }) => {
+          return (
+            <AppBarMono
+              navigation={navigation}
+              position="top"
+              backActionPress={backActionPress}
+              actionPress={topPressHandler}
+              actions={topActions}
+              menuActionPress={menuActionPress}
+              selectedAction={selectedAction}
+            />
+          )
+        }
+      }}
+    >
+      {/* 
+        <AppBarMono
+          position="top"
+          backActionPress={backActionPress}
+          actionPress={topPressHandler}
+          actions={topActions}
+          menuActionPress={menuActionPress}
+          selectedAction={selectedAction}
+        />
+          */}
+
+      <Drawer.Screen
+        name="Feed"
+      >
+    {({navigation}) => <Feed
+                         navigation={navigation}
+                         moreText='hello' />}
+      </Drawer.Screen>
+
+      <Drawer.Screen
+        name="Details"
+        component={Details}
       />
 
-      {children}
+      {/* <AppBarMono
+          position="bottom"
+          actionPress={bottomPressHandler}
+          actions={bottomActions}
+          selectedAction={selectedAction}
+        /> */}
 
-      <AppBarMono
-        position="bottom"
-        actionPress={bottomPressHandler}
-        actions={bottomActions}
-        selectedAction={selectedAction}
-      />
+    </Drawer.Navigator >
 
-    </View >
-  )
+
+  );
 };
 
 interface AppLayoutProps {

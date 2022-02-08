@@ -22,7 +22,6 @@ export const useStyles = ({
       ...style
     },
     top: {
-      position: 'absolute',
       left: 0,
       right: 0,
       top: 0,

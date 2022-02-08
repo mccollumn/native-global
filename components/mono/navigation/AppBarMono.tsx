@@ -17,6 +17,7 @@ export const AppBarMono = ({
   menuActionPress,
   actionPress,
   selectedAction,
+  navigation,
   ...props
 }: AppBarMonoProps) => {
 
@@ -36,6 +37,11 @@ export const AppBarMono = ({
     return null;
   }
 
+  const toggleDrawer = () => {
+    menuActionPress();
+    navigation.toggleDrawer();
+  }
+
   return (
     <Appbar
       style={styles[position]}
@@ -46,7 +52,7 @@ export const AppBarMono = ({
       />
 
       <MenuAction
-        onPress={menuActionPress}
+        onPress={toggleDrawer}
       />
 
       <View style={styles[`${position}Actions`]}>
@@ -225,6 +231,14 @@ export interface AppBarMonoProps {
    * Navigation action currently in a selected state
    */
   selectedAction?: Object;
+  /**
+   * Navigation type from @react-navigation/drawer
+   * Currrently can't get type to work
+   *  import {
+   *      DrawerNavigationProp
+   *  } from '@react-navigation/drawer';
+   */
+  navigation: any
   /**
    * Which theme color to use
    */
