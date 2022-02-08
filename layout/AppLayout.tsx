@@ -147,6 +147,7 @@ export const AppLayout = ({
   navigationPress = () => { },
   menuActionPress = () => { },
   selectedAction,
+  screenMap,
   children
 }: AppLayoutProps) => {
   const styles = useStyles();
@@ -165,6 +166,9 @@ export const AppLayout = ({
   const bottomPressHandler = (action: any) => {
     handleNavActionPress(action, 'bottom');
   };
+
+
+  const screenList = getScreenList(screenMap);
 
   return (
 
@@ -186,29 +190,22 @@ export const AppLayout = ({
         }
       }}
     >
-      {/* 
-        <AppBarMono
-          position="top"
-          backActionPress={backActionPress}
-          actionPress={topPressHandler}
-          actions={topActions}
-          menuActionPress={menuActionPress}
-          selectedAction={selectedAction}
-        />
-          */}
 
       <Drawer.Screen
         name="Feed"
       >
-    {({navigation}) => <Feed
-                         navigation={navigation}
-                         moreText='hello' />}
+
+        {({ navigation }) => <Feed
+          navigation={navigation}
+          moreText='hello' />}
       </Drawer.Screen>
 
       <Drawer.Screen
         name="Details"
         component={Details}
       />
+
+      {screenList}
 
       {/* <AppBarMono
           position="bottom"
@@ -223,7 +220,27 @@ export const AppLayout = ({
   );
 };
 
+const getScreenList = (
+  screenMap: Object = {}
+) => {
+
+  return Object.entries(screenMap)
+               .map(([key, value={}], index) => {
+                 return (
+                   <Drawer.Screen
+                     key={`screen-${index}`}
+                     name={key}
+                     component={value.component}
+                   />
+                 );
+               });
+}
+
 interface AppLayoutProps {
+  /**
+   * Map of all pages within the app
+   */
+  screenMap: Object;
   /**
    * Action icons to add to top navigation bar
    * Top navigation bar will not be populated if this is empty

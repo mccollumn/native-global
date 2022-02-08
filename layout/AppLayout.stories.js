@@ -42,19 +42,34 @@ const AppLayoutConsumer = ({
       bottomActions={bottomActions}
       navigationPress={handleNavigationSelect}
       selectedAction={selectedAction}
+      screenMap={screenMap}
     />
   );
+};
+
+const screenMap = {
+  Home: {
+    component: () => <Home />
+  },
+  Search: {
+    component: () => <Search />
+  },
+  Account: {
+    component: () => <Account />
+  }
 };
 
 const topActions = [
   {
     id: 'SEARCH',
+    name: 'Search',
     accessibilityLabel: 'Search',
     icon: 'magnify',
     onPress: () => { }
   },
   {
     id: 'ACCOUNT',
+    name: 'Account',
     accessibilityLabel: 'Account',
     icon: 'account',
     onPress: () => { },
@@ -64,26 +79,48 @@ const topActions = [
 const bottomActions = [
   {
     id: 'LABEL',
+    name: 'Label',
     accessibilityLabel: 'Access Label',
     icon: 'label',
     onPress: () => { }
   },
   {
     id: 'MAIL',
+    name: 'Mail',
     accessibilityLabel: 'Send Message',
     icon: 'mail',
     onPress: () => { },
   },
   {
     id: 'LIST',
+    name: 'List',
     accessibilityLabel: 'List items',
     icon: 'format-list-bulleted',
     onPress: () => { },
   },
   {
-    id: 'SETTING',
+    id: 'SETTINGS',
+    name: 'Settings',
     accessibilityLabel: 'Settings',
     icon: 'cog',
     onPress: () => { },
   }
 ];
+
+const Home = () => {
+  return (
+    <Text>Home</Text>
+  );
+};
+
+const Search = () => {
+  return (
+    <Text>Search</Text>
+  );
+};
+
+const Account = () => {
+  return (
+    <Text>Account</Text>
+  );
+};
