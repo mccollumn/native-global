@@ -147,7 +147,6 @@ export const AppLayout = ({
   navigationPress = () => { },
   menuActionPress = () => { },
   selectedAction,
-  screenMap,
   children
 }: AppLayoutProps) => {
   const styles = useStyles();
@@ -167,9 +166,7 @@ export const AppLayout = ({
     handleNavActionPress(action, 'bottom');
   };
 
-
-  const screenList = getScreenList(screenMap);
-
+  const childrenList = getChildrenList(children);
   return (
 
     <Drawer.Navigator
@@ -196,8 +193,8 @@ export const AppLayout = ({
       >
 
         {({ navigation }) => <Feed
-          navigation={navigation}
-          moreText='hello' />}
+                               navigation={navigation}
+                               moreText='hello' />}
       </Drawer.Screen>
 
       <Drawer.Screen
@@ -205,7 +202,9 @@ export const AppLayout = ({
         component={Details}
       />
 
-      {screenList}
+      {/* {screenList} */}
+
+      {childrenList}
 
       {/* <AppBarMono
           position="bottom"
@@ -236,11 +235,26 @@ const getScreenList = (
                });
 }
 
+const getChildrenList = (
+  children: any = []
+) => {
+
+  return React.Children.map(children, (child => {
+    console.log('Child', child.props);
+
+    const clonedChild = React.cloneElement(child, {});
+    console.log('Child', child);
+    return (
+      <Drawer.Screen
+        key={`screen-${child.props.name}`}
+        name={child.props.name}
+        component={() => clonedChild}
+      />
+    )
+  }));
+}
+
 interface AppLayoutProps {
-  /**
-   * Map of all pages within the app
-   */
-  screenMap: Object;
   /**
    * Action icons to add to top navigation bar
    * Top navigation bar will not be populated if this is empty
@@ -271,5 +285,13 @@ interface AppLayoutProps {
   /**
    * All child items
    */
-  children: any
+  children: React.FC<AppChild>[]
+}
+
+export interface AppChild {
+  /**
+   * Name of element to display in Navigation
+   */
+  name: String;
+  props: Object
 }

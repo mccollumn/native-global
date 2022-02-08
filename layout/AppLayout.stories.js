@@ -42,21 +42,22 @@ const AppLayoutConsumer = ({
       bottomActions={bottomActions}
       navigationPress={handleNavigationSelect}
       selectedAction={selectedAction}
-      screenMap={screenMap}
-    />
-  );
-};
+    >
 
-const screenMap = {
-  Home: {
-    component: () => <Home />
-  },
-  Search: {
-    component: () => <Search />
-  },
-  Account: {
-    component: () => <Account />
-  }
+      <Home
+        name={'Home'}
+      />
+
+      <Search
+        name={'Search'}
+      />
+
+      <Account
+        name={'Account'}
+      />
+
+    </AppLayout>
+  );
 };
 
 const topActions = [
@@ -107,9 +108,9 @@ const bottomActions = [
   }
 ];
 
-const Home = () => {
+const Home = ({name}) => {
   return (
-    <Text>Home</Text>
+    <Text>Home {name}</Text>
   );
 };
 
