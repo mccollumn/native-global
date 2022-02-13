@@ -53,6 +53,7 @@ export const AppBarMono = ({
 
       <MenuAction
         onPress={toggleDrawer}
+        position={position}
       />
 
       <View style={styles[`${position}Actions`]}>
@@ -90,10 +91,11 @@ const BackAction = ({
 }
 
 const MenuAction = ({
-  onPress
+  onPress,
+  position
 }: any) => {
 
-  if (!onPress) {
+  if (!onPress || position === 'bottom') {
     return null;
   }
 

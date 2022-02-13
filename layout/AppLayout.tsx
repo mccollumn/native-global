@@ -82,7 +82,6 @@ const Feed = ({
   navigation,
   moreText = ''
 }: any) => {
-  console.log('In Feed', navigation);
 
   // This example is how we redirect
   React.useEffect(() => {
@@ -166,7 +165,13 @@ export const AppLayout = ({
     handleNavActionPress(action, 'bottom');
   };
 
-  const childrenList = getChildrenList(children);
+  const childrenList = getChildrenList(
+    children,
+    bottomPressHandler,
+    bottomActions,
+    selectedAction
+  );
+
   return (
 
     <Drawer.Navigator
@@ -193,8 +198,8 @@ export const AppLayout = ({
       >
 
         {({ navigation }) => <Feed
-                               navigation={navigation}
-                               moreText='hello' />}
+          navigation={navigation}
+          moreText='hello' />}
       </Drawer.Screen>
 
       <Drawer.Screen
@@ -236,21 +241,50 @@ const getScreenList = (
 }
 
 const getChildrenList = (
-  children: any = []
+  children: any = [],
+  bottomPressHandler: any,
+  bottomActions: any,
+  selectedAction: any
 ) => {
 
-  return React.Children.map(children, (child => {
-    console.log('Child', child.props);
+  return React.Children.map(children, (Child => {
 
-    const clonedChild = React.cloneElement(child, {});
-    console.log('Child', child);
+    const ChildComponent = ({navigation}:any) => {
+      const clone = React.cloneElement(Child, { navigation });
+
+      return (
+        <View>
+
+          {clone}
+
+          <Text>Add Lower Navbar</Text>
+
+          <AppBarMono
+            position="bottom"
+            actionPress={bottomPressHandler}
+            actions={bottomActions}
+            selectedAction={selectedAction}
+            navigation={navigation}
+          />
+
+        </View>
+      )
+    };
+
     return (
       <Drawer.Screen
-        key={`screen-${child.props.name}`}
-        name={child.props.name}
-        component={() => clonedChild}
-      />
-    )
+        key={`screen-${Child.props.name}`}
+        name={Child.props.name}
+      >
+
+        {
+          ({ navigation }) => <ChildComponent
+                                navigation={navigation}
+                                moreText='hello' />
+        }
+
+      </Drawer.Screen>
+    );
   }));
 }
 
