@@ -6,107 +6,10 @@ import {
   AppBarActionProps
 } from '../components/mono/navigation/AppBarMono';
 import {
-  DrawerItem,
-  DrawerContentScrollView,
   createDrawerNavigator,
-  DrawerContent,
-  DrawerItemList,
-  DrawerNavigationProp
 } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
-import {
-  //Drawer
-} from 'react-native-paper';
 
-const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-
-export const AppNavigation = ({
-  topActions = [],
-  bottomActions = [],
-  backActionPress,
-  navigationPress = () => { },
-  menuActionPress = () => { },
-  selectedAction,
-  children
-}: AppLayoutProps) => {
-
-  return (
-    <>
-
-      <Drawer.Navigator
-        initialRouteName="Details"
-        screenOptions={{
-          header: (props) => {
-            console.log('Me Header Props', props);
-
-            return (
-              <View><Text>ddd</Text></View>
-            )
-          }
-        }}>
-
-      </Drawer.Navigator>
-
-    </>
-  );
-};
-
-const Feed = ({
-  navigation,
-  moreText = ''
-}: any) => {
-
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'aqua'
-      }}>
-
-      <Text>
-        Feed Me Now {moreText}
-      </Text>
-
-      <Button
-        title="Open drawer"
-        onPress={() => navigation.openDrawer()}
-      />
-
-      <Button
-        title="Toggle drawer"
-        onPress={() => navigation.toggleDrawer()}
-      />
-
-    </View>
-  );
-};
-
-const Details = ({
-  navigation
-}:any) => {
-  return (
-    <View>
-
-      <Text>
-        Details Me Fool
-      </Text>
-
-      <Button
-        title="Open drawer"
-        onPress={() => navigation.openDrawer()}
-      />
-
-      <Button
-        title="Toggle drawer"
-        onPress={() => navigation.toggleDrawer()}
-      />
-
-    </View>
-  );
-};
 
 export const AppLayout = ({
   topActions = [],
@@ -144,7 +47,7 @@ export const AppLayout = ({
   return (
 
     <Drawer.Navigator
-      initialRouteName="Details"
+      initialRouteName="Home"
       screenOptions={{
         header: ({ navigation }) => {
           return (
@@ -162,20 +65,6 @@ export const AppLayout = ({
       }}
     >
 
-      <Drawer.Screen
-        name="Feed"
-      >
-
-        {({ navigation }) => <Feed
-          navigation={navigation}
-          moreText='hello' />}
-      </Drawer.Screen>
-
-      <Drawer.Screen
-        name="Details"
-        component={Details}
-      />
-
       {childrenList}
 
     </Drawer.Navigator >
@@ -183,22 +72,6 @@ export const AppLayout = ({
 
   );
 };
-
-const getScreenList = (
-  screenMap: Object = {}
-) => {
-
-  return Object.entries(screenMap)
-               .map(([key, value={}], index) => {
-                 return (
-                   <Drawer.Screen
-                     key={`screen-${index}`}
-                     name={key}
-                     component={value.component}
-                   />
-                 );
-               });
-}
 
 const getChildrenList = (
   children: any = [],
