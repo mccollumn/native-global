@@ -46,47 +46,16 @@ export const AppNavigation = ({
           }
         }}>
 
-        <Drawer.Screen
-          name="Feed"
-          component={Feed}
-        />
-
-        <Drawer.Screen
-          name="Details"
-          component={Details}
-        />
-
       </Drawer.Navigator>
 
     </>
   );
 };
 
-const CustomDrawerContent = (props:any) => {
-  return (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
-      <DrawerItem
-        label="Close drawer"
-        onPress={() => props.navigation.closeDrawer()}
-      />
-      <DrawerItem
-        label="Toggle drawer"
-        onPress={() => props.navigation.toggleDrawer()}
-      />
-    </DrawerContentScrollView>
-  );
-}
-
 const Feed = ({
   navigation,
   moreText = ''
 }: any) => {
-
-  // This example is how we redirect
-  React.useEffect(() => {
-    //navigation.push('Details');
-  }, [])
 
   return (
     <View
@@ -207,16 +176,7 @@ export const AppLayout = ({
         component={Details}
       />
 
-      {/* {screenList} */}
-
       {childrenList}
-
-      {/* <AppBarMono
-          position="bottom"
-          actionPress={bottomPressHandler}
-          actions={bottomActions}
-          selectedAction={selectedAction}
-        /> */}
 
     </Drawer.Navigator >
 
@@ -255,9 +215,13 @@ const getChildrenList = (
       return (
         <View>
 
-          {clone}
+          <View style={{
+            height: '100%'
+          }}>
 
-          <Text>Add Lower Navbar</Text>
+            {clone}
+
+          </View>
 
           <AppBarMono
             position="bottom"
