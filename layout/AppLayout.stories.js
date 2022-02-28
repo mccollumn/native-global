@@ -24,8 +24,9 @@ const AppLayoutConsumer = ({
 }) => {
   const [selectedAction, setSelectedAction] = React.useState();
 
-  const handleNavigationSelect = (action, type) => {
+  const handleNavigationSelect = (action, navigation, type) => {
     console.log('Handling action', action, type);
+    navigation.jumpTo(action.name, {});
     setSelectedAction(action);
   };
 
@@ -47,6 +48,22 @@ const AppLayoutConsumer = ({
 
       <Account
         name={'Account'}
+      />
+
+      <Label
+        name={'Label'}
+      />
+
+      <Mail
+        name={'Mail'}
+      />
+
+      <List
+        name={'List'}
+      />
+
+      <Settings
+        name={'Settings'}
       />
 
     </AppLayout>
@@ -116,5 +133,29 @@ const Search = () => {
 const Account = () => {
   return (
     <Text>Account</Text>
+  );
+};
+
+const Label = () => {
+  return (
+    <Text>Label</Text>
+  );
+};
+
+const Mail = () => {
+  return (
+    <Text>Mail</Text>
+  );
+};
+
+const List = () => {
+  return (
+    <Text>List</Text>
+  );
+};
+
+const Settings = () => {
+  return (
+    <Text>Settings</Text>
   );
 };

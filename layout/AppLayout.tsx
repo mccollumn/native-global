@@ -24,17 +24,24 @@ export const AppLayout = ({
 
   const handleNavActionPress = (
     action: any,
+    navigation: any,
     navType: 'top' | 'bottom' | 'drawer'
   ) => {
-    navigationPress(action, navType);
+    navigationPress(action, navigation, navType);
   }
 
-  const topPressHandler = (action: any) => {
-    handleNavActionPress(action, 'top');
+  const topPressHandler = (
+    action: any,
+    navigation: any
+  ) => {
+    handleNavActionPress(action, navigation, 'top');
   };
 
-  const bottomPressHandler = (action: any) => {
-    handleNavActionPress(action, 'bottom');
+  const bottomPressHandler = (
+    action: any,
+    navigation: any
+  ) => {
+    handleNavActionPress(action, navigation, 'bottom');
   };
 
   const childrenList = getChildrenList(
@@ -115,9 +122,10 @@ const getChildrenList = (
       >
 
         {
-          ({ navigation }) => <ChildComponent
-                                navigation={navigation}
-                                moreText='hello' />
+          ({ navigation }) => (
+            <ChildComponent
+              navigation={navigation}
+            />)
         }
 
       </Drawer.Screen>

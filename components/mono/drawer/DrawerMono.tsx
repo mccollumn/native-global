@@ -10,7 +10,7 @@ export const DrawerMono = ({
       title={title}>
 
       <Drawer.Item
-        label="poot"
+        label="Test"
       />
 
     </Drawer.Section>
@@ -19,7 +19,7 @@ export const DrawerMono = ({
 
 interface DrawerMonoProps {
   /**
-   * Title at tope of drawer
+   * Title at top of drawer
    */
   title: string;
   /**

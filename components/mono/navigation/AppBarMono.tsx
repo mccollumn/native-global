@@ -17,7 +17,7 @@ export const AppBarMono = ({
   menuActionPress,
   actionPress,
   selectedAction,
-  navigation,
+  navigation = {},
   ...props
 }: AppBarMonoProps) => {
 
@@ -63,6 +63,7 @@ export const AppBarMono = ({
           actions={actions}
           actionPress={actionPress}
           selectedAction={selectedAction}
+          navigation={navigation}
         />
 
       </View>
@@ -118,7 +119,8 @@ const BarContent = ({
   actions = [],
   position,
   actionPress = () => { },
-  selectedAction
+  selectedAction,
+  navigation = { }
 }: any) => {
   if (!actions.length) {
     return null;
@@ -132,6 +134,7 @@ const BarContent = ({
         action={action}
         actionPress={actionPress}
         selectedAction={selectedAction}
+        navigation={navigation}
         {...action}
       />
     );
@@ -151,7 +154,8 @@ const ActionItem = ({
   position = "bottom",
   action = {},
   actionPress = () => {},
-  selectedAction
+  selectedAction,
+  navigation = {}
 }: any) => {
 
   const theme: any = useTheme();
@@ -164,7 +168,7 @@ const ActionItem = ({
   }
 
   const pressHandler = () => {
-    actionPress(action);
+    actionPress(action, navigation);
     onPress(id);
   }
 
