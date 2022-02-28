@@ -76,7 +76,6 @@ export const AppLayout = ({
 
     </Drawer.Navigator >
 
-
   );
 };
 
@@ -89,7 +88,8 @@ const getChildrenList = (
 
   return React.Children.map(children, (Child => {
 
-    const ChildComponent = ({navigation}:any) => {
+    const ChildComponent = ({navigation, ...props}:any) => {
+
       const clone = React.cloneElement(Child, { navigation });
 
       return (
