@@ -203,6 +203,14 @@ export interface AppBarActionProps {
    */
   onPress?: any,
   /**
+   * Where to place the action
+   * Left Nav Drawer
+   * Top App Bar
+   * Bottom App Bar
+   * Default: left
+   */
+  position?: 'left' | 'top' | 'bottom';
+  /**
    * Which theme icon color to use
    */
   iconColor?: string | 'primary' | 'background' | 'surface' | 'accent' | 'error' | 'text' | 'onSurface' | 'disabled' | 'placeholder' | 'backdrop' | 'notification',

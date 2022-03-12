@@ -93,11 +93,11 @@ const getChildrenList = (
       const clone = React.cloneElement(Child, { navigation });
 
       return (
-        <View>
+        <View style={{
+          height: '100%',
+        }}>
 
-          <View style={{
-            height: '100%'
-          }}>
+          <View>
 
             {clone}
 
@@ -134,6 +134,11 @@ const getChildrenList = (
 }
 
 interface AppLayoutProps {
+  /**
+   * Action icons to add to top navigation bar
+   * Top navigation bar will not be populated if this is empty
+   */
+  action?: Array<AppBarActionProps>;
   /**
    * Action icons to add to top navigation bar
    * Top navigation bar will not be populated if this is empty
