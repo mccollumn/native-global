@@ -33,8 +33,6 @@ const AppLayoutConsumer = ({
   return (
     <AppLayout
       actions={actions}
-      topActions={topActions}
-      bottomActions={bottomActions}
       navigationPress={handleNavigationSelect}
       selectedAction={selectedAction}
     >
@@ -118,54 +116,6 @@ const actions = [
     accessibilityLabel: 'Settings',
     icon: 'cog',
     position: 'bottom',
-    onPress: () => { },
-  }
-];
-
-const topActions = [
-  {
-    id: 'SEARCH',
-    name: 'Search',
-    accessibilityLabel: 'Search',
-    icon: 'magnify',
-    onPress: () => { }
-  },
-  {
-    id: 'ACCOUNT',
-    name: 'Account',
-    accessibilityLabel: 'Account',
-    icon: 'account',
-    onPress: () => { },
-  }
-];
-
-const bottomActions = [
-  {
-    id: 'LABEL',
-    name: 'Label',
-    accessibilityLabel: 'Access Label',
-    icon: 'label',
-    onPress: () => { }
-  },
-  {
-    id: 'MAIL',
-    name: 'Mail',
-    accessibilityLabel: 'Send Message',
-    icon: 'mail',
-    onPress: () => { },
-  },
-  {
-    id: 'LIST',
-    name: 'List',
-    accessibilityLabel: 'List items',
-    icon: 'format-list-bulleted',
-    onPress: () => { },
-  },
-  {
-    id: 'SETTINGS',
-    name: 'Settings',
-    accessibilityLabel: 'Settings',
-    icon: 'cog',
     onPress: () => { },
   }
 ];

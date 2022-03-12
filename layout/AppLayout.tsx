@@ -12,8 +12,7 @@ import {
 const Drawer = createDrawerNavigator();
 
 export const AppLayout = ({
-  topActions = [],
-  bottomActions = [],
+  actions = [],
   backActionPress,
   navigationPress = () => { },
   menuActionPress = () => { },
@@ -44,10 +43,22 @@ export const AppLayout = ({
     handleNavActionPress(action, navigation, 'bottom');
   };
 
+  const topNavActions = actions.filter(
+    a => a.position === 'top'
+  );
+  const bottomNavActions = actions.filter(
+    a => a.position === 'bottom'
+  );
+
+  // TODO: Custom Drawer Actions
+  const drawerNavActions = actions.filter(
+    a => a.position === 'drawer'
+  );
+
   const childrenList = getChildrenList(
     children,
     bottomPressHandler,
-    bottomActions,
+    bottomNavActions,
     selectedAction
   );
 
@@ -63,7 +74,7 @@ export const AppLayout = ({
               position="top"
               backActionPress={backActionPress}
               actionPress={topPressHandler}
-              actions={topActions}
+              actions={topNavActions}
               menuActionPress={menuActionPress}
               selectedAction={selectedAction}
             />
@@ -138,7 +149,7 @@ interface AppLayoutProps {
    * Action icons to add to top navigation bar
    * Top navigation bar will not be populated if this is empty
    */
-  action?: Array<AppBarActionProps>;
+  actions?: Array<AppBarActionProps>;
   /**
    * Action icons to add to top navigation bar
    * Top navigation bar will not be populated if this is empty
