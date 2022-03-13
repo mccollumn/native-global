@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Button } from 'react-native';
 import { useStyles } from './AppLayout.styles';
+import { LeftDrawer } from './LeftDrawer';
 import {
   AppBarMono,
   AppBarActionProps
@@ -43,6 +44,13 @@ export const AppLayout = ({
     handleNavActionPress(action, navigation, 'bottom');
   };
 
+  const drawerPressHandler = (
+    action: any,
+    navigation: any
+  ) => {
+    handleNavActionPress(action, navigation, 'drawer');
+  };
+
   const topNavActions = actions.filter(
     a => a.position === 'top'
   );
@@ -50,9 +58,8 @@ export const AppLayout = ({
     a => a.position === 'bottom'
   );
 
-  // TODO: Custom Drawer Actions
   const drawerNavActions = actions.filter(
-    a => a.position === 'drawer'
+    a => !['top', 'bottom'].includes(a.position || '')
   );
 
   const childrenList = getChildrenList(
@@ -66,6 +73,14 @@ export const AppLayout = ({
 
     <Drawer.Navigator
       initialRouteName="Home"
+      drawerContent={(props) => (
+        <LeftDrawer
+          drawerNavActions={drawerNavActions}
+          drawerPressHandler={drawerPressHandler}
+          selectedAction={selectedAction}
+          {...props}
+        />
+      )}
       screenOptions={{
         header: ({ navigation }) => {
           return (

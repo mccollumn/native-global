@@ -65,11 +65,55 @@ const AppLayoutConsumer = ({
         name={'Settings'}
       />
 
+      <Feature1
+        name={'Feature1'}
+      />
+
+      <Feature2
+        name={'Feature2'}
+      />
+
+      <Feature3
+        name={'Feature3'}
+      />
+
     </AppLayout>
   );
 };
 
 const actions = [
+  {
+    id: 'HOME',
+    name: 'Home',
+    accessibilityLabel: 'Home',
+    icon: 'home',
+    position: 'drawer',
+    onPress: () => { }
+  },
+  {
+    id: 'FEATURE1',
+    name: 'Feature1',
+    accessibilityLabel: 'Feature 1',
+    icon: 'home',
+    position: 'drawer',
+    onPress: () => { }
+  },
+  {
+    id: 'FEATURE2',
+    name: 'Feature2',
+    accessibilityLabel: 'Feature 2',
+    icon: 'home',
+    position: 'drawer',
+    onPress: () => { }
+  },
+  {
+    id: 'FEATURE3',
+    name: 'Feature3',
+    accessibilityLabel: 'Feature 3',
+    icon: 'home',
+    position: 'drawer',
+    onPress: () => { }
+  },
   {
     id: 'SEARCH',
     name: 'Search',
@@ -122,7 +166,7 @@ const actions = [
 
 const Home = ({name}) => {
   return (
-    <Text>Home {name}</Text>
+    <Text>{name}</Text>
   );
 };
 
@@ -159,5 +203,23 @@ const List = () => {
 const Settings = () => {
   return (
     <Text>Settings</Text>
+  );
+};
+
+const Feature1 = () => {
+  return (
+    <Text>Feature1</Text>
+  );
+};
+
+const Feature2 = () => {
+  return (
+    <Text>Feature 2</Text>
+  );
+};
+
+const Feature3 = () => {
+  return (
+    <Text>Feature 3</Text>
   );
 };
