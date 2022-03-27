@@ -18,6 +18,8 @@ export const AppLayout = ({
   navigationPress = () => { },
   menuActionPress = () => { },
   selectedAction,
+  isAuthenticated,
+  userAuthRoles,
   children
 }: AppLayoutProps) => {
   const styles = useStyles();
@@ -62,12 +64,14 @@ export const AppLayout = ({
     a => !['top', 'bottom'].includes(a.position || '')
   );
 
-  const childrenList = getChildrenList(
+  const childrenList = getChildrenList({
     children,
     bottomPressHandler,
     bottomNavActions,
-    selectedAction
-  );
+    selectedAction,
+    isAuthenticated,
+    userAuthRoles
+  });
 
   return (
 
@@ -105,18 +109,38 @@ export const AppLayout = ({
   );
 };
 
-const getChildrenList = (
-  children: any = [],
-  bottomPressHandler: any,
-  bottomActions: any,
-  selectedAction: any
-) => {
+const getChildrenList = ({
+  children = [],
+  bottomPressHandler,
+  bottomNavActions,
+  selectedAction,
+  isAuthenticated,
+  userAuthRoles
+}: any) => {
 
   return React.Children.map(children, (Child => {
 
-    const ChildComponent = ({navigation, ...props}:any) => {
+    const ChildComponent = ({
+      navigation,
+      ...props
+    }: any) => {
 
-      const clone = React.cloneElement(Child, { navigation });
+      const clone = React.cloneElement(Child, {
+        // Inject properties into Child Pages
+        navigation,
+        isAuthenticated,
+        userAuthRoles,
+      });
+
+      // Redirect page to Login on MOUNT if not authenticated
+      React.useEffect(() => {
+        if (!isAuthenticated) {
+          navigation.jumpTo('Login', {
+            isRedirected: true,
+            isAuthenticated
+          });
+        }
+      }, []);
 
       return (
         <View style={{
@@ -132,7 +156,7 @@ const getChildrenList = (
           <AppBarMono
             position="bottom"
             actionPress={bottomPressHandler}
-            actions={bottomActions}
+            actions={bottomNavActions}
             selectedAction={selectedAction}
             navigation={navigation}
           />
@@ -192,6 +216,14 @@ interface AppLayoutProps {
    * Navigation action currently in a selected state
    */
   selectedAction?: Object;
+  /**
+   * If logged in user is Authenticated
+   */
+  isAuthenticated?: Boolean;
+  /**
+   * User Authorization Roles
+   */
+  userAuthRoles?: Array<any>;
   /**
    * All child items
    */

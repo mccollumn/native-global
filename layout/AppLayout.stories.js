@@ -3,6 +3,7 @@ import React from "react";
 import CenterView from "../storybook/stories/CenterView";
 import { View, Text } from 'react-native';
 import { AppLayout } from './AppLayout';
+import { Login } from '../screens/Login';
 
 storiesOf("App Layout", module)
   .addDecorator((getStory) => (
@@ -13,14 +14,24 @@ storiesOf("App Layout", module)
       {getStory()}
     </CenterView>
   ))
-  .add("Layout", () => {
+  .add("Logged In", () => {
     return (
-      <AppLayoutConsumer/>
+      <AppLayoutConsumer
+        isAuthenticated={true}
+      />
+    );
+  })
+  .add("Logged Out", () => {
+    return (
+      <AppLayoutConsumer
+        isAuthenticated={false}
+      />
     );
   });
 
 const AppLayoutConsumer = ({
-  
+  isAuthenticated,
+  userAuthRoles
 }) => {
   const [selectedAction, setSelectedAction] = React.useState();
 
@@ -35,6 +46,8 @@ const AppLayoutConsumer = ({
       actions={actions}
       navigationPress={handleNavigationSelect}
       selectedAction={selectedAction}
+      isAuthenticated={isAuthenticated}
+      userAuthRoles={userAuthRoles}
     >
 
       <Home
@@ -75,6 +88,10 @@ const AppLayoutConsumer = ({
 
       <Feature3
         name={'Feature3'}
+      />
+
+      <Login
+        name={'Login'}
       />
 
     </AppLayout>
@@ -164,13 +181,19 @@ const actions = [
   }
 ];
 
-const Home = ({name}) => {
+const Home = ({
+  name,
+  isAuthenticated
+}) => {
   return (
     <Text>{name}</Text>
   );
 };
 
-const Search = () => {
+const Search = ({
+  isAuthenticated,
+  userAuthRoles
+}) => {
   return (
     <Text>Search</Text>
   );
