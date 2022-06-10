@@ -35,7 +35,9 @@ const AppLayoutConsumer = ({
 }) => {
   const [selectedAction, setSelectedAction] = React.useState();
 
-  const handleNavigationSelect = (action, navigation, type) => {
+  const handleNavigationSelect = (
+    action, navigation, type
+  ) => {
     console.log('Handling action', action, type);
     navigation.jumpTo(action.name, {});
     setSelectedAction(action);

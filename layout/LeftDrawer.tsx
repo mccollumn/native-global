@@ -4,7 +4,7 @@ import { Drawer } from 'react-native-paper';
 
 export const LeftDrawer = ({
   drawerNavActions = [],
-  drawerPressHandler = () => { },
+  handleNavActionPress = () => { },
   navigation,
   selectedAction,
   ...props
@@ -14,10 +14,10 @@ export const LeftDrawer = ({
 
     const pressHandler = () => {
       if (typeof action.onPress === 'function') {
-        action.onPress(action, navigation);
+        action.onPress(action, navigation, 'drawer');
       }
 
-      drawerPressHandler(action, navigation);
+      handleNavActionPress(action, navigation, 'drawer');
     }
 
     return (

@@ -15,7 +15,7 @@ export const AppBarMono = ({
   actions = [],
   backActionPress,
   menuActionPress,
-  actionPress,
+  actionPress = () => {},
   selectedAction,
   navigation = {},
   ...props
@@ -42,6 +42,12 @@ export const AppBarMono = ({
     navigation.toggleDrawer();
   }
 
+  const handleActionPress = (
+    action: any,
+  ) => {
+    actionPress(action, navigation, position);
+  }
+
   return (
     <Appbar
       style={styles[position]}
@@ -61,7 +67,7 @@ export const AppBarMono = ({
         <BarContent
           position={position}
           actions={actions}
-          actionPress={actionPress}
+          actionPress={handleActionPress}
           selectedAction={selectedAction}
           navigation={navigation}
         />

@@ -32,27 +32,6 @@ export const AppLayout = ({
     navigationPress(action, navigation, navType);
   }
 
-  const topPressHandler = (
-    action: any,
-    navigation: any
-  ) => {
-    handleNavActionPress(action, navigation, 'top');
-  };
-
-  const bottomPressHandler = (
-    action: any,
-    navigation: any
-  ) => {
-    handleNavActionPress(action, navigation, 'bottom');
-  };
-
-  const drawerPressHandler = (
-    action: any,
-    navigation: any
-  ) => {
-    handleNavActionPress(action, navigation, 'drawer');
-  };
-
   const topNavActions = actions.filter(
     a => a.position === 'top'
   );
@@ -66,7 +45,7 @@ export const AppLayout = ({
 
   const childrenList = getChildrenList({
     children,
-    bottomPressHandler,
+    bottomPressHandler: handleNavActionPress,
     bottomNavActions,
     selectedAction,
     isAuthenticated,
@@ -80,7 +59,7 @@ export const AppLayout = ({
       drawerContent={(props) => (
         <LeftDrawer
           drawerNavActions={drawerNavActions}
-          drawerPressHandler={drawerPressHandler}
+          handleNavActionPress={handleNavActionPress}
           selectedAction={selectedAction}
           {...props}
         />
@@ -92,7 +71,7 @@ export const AppLayout = ({
               navigation={navigation}
               position="top"
               backActionPress={backActionPress}
-              actionPress={topPressHandler}
+              actionPress={handleNavActionPress}
               actions={topNavActions}
               menuActionPress={menuActionPress}
               selectedAction={selectedAction}
