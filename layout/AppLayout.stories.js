@@ -148,6 +148,7 @@ const actions = [
     icon: 'account',
     position: 'top',
     onPress: () => { },
+    isPublic: true
   },
   {
     id: 'LABEL',

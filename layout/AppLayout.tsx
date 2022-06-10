@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Button } from 'react-native';
 import { useStyles } from './AppLayout.styles';
 import { LeftDrawer } from './LeftDrawer';
+import { useNavActions } from './hooks/useNavActions';
 import {
   AppBarMono,
   AppBarActionProps
@@ -32,16 +33,11 @@ export const AppLayout = ({
     navigationPress(action, navigation, navType);
   }
 
-  const topNavActions = actions.filter(
-    a => a.position === 'top'
-  );
-  const bottomNavActions = actions.filter(
-    a => a.position === 'bottom'
-  );
-
-  const drawerNavActions = actions.filter(
-    a => !['top', 'bottom'].includes(a.position || '')
-  );
+  const {
+    topNavActions,
+    bottomNavActions,
+    drawerNavActions
+  } = useNavActions(actions, isAuthenticated);
 
   const childrenList = getChildrenList({
     children,

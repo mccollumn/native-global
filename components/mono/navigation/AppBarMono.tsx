@@ -15,13 +15,17 @@ export const AppBarMono = ({
   actions = [],
   backActionPress,
   menuActionPress,
-  actionPress = () => {},
+  actionPress = () => { },
   selectedAction,
   navigation = {},
   ...props
 }: AppBarMonoProps) => {
 
-  const styles: any = useStyles({color, style});
+  if(!actions.length) {
+    return null;
+  }
+
+  const styles: any = useStyles({ color, style });
 
   // Cast props to any to avoid typescript errors
   const anyProps: any = props;
@@ -221,6 +225,10 @@ export interface AppBarActionProps {
    * Css style on icon
    */
   style?: Object;
+  /**
+   * Allow display ob public pages
+   */
+  isPublic?: Boolean;
 }
 
 export interface AppBarMonoProps {
