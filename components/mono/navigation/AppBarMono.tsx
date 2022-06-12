@@ -31,12 +31,11 @@ export const AppBarMono = ({
   // Cast props to any to avoid typescript errors
   const anyProps: any = props;
 
-  // Hide menu if these conditions are not met
+  // Hide menu if all these conditions are not met
   const displayMenu = [
     !!actions.length,
     !!backActionPress,
-    !!menuActionPress,
-    !!displayMenuIcon
+    !!menuActionPress
   ].some(s => s);
 
   if (!displayMenu) {
@@ -66,6 +65,7 @@ export const AppBarMono = ({
       <MenuAction
         onPress={toggleDrawer}
         position={position}
+        displayMenuIcon={displayMenuIcon}
       />
 
       <View style={styles[`${position}Actions`]}>
@@ -105,11 +105,16 @@ const BackAction = ({
 
 const MenuAction = ({
   onPress,
-  position
+  position,
+  displayMenuIcon
 }: any) => {
 
   if (!onPress || position === 'bottom') {
     return null;
+  }
+
+  if (!displayMenuIcon) {
+    return null
   }
 
   return (
