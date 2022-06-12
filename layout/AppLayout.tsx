@@ -71,6 +71,7 @@ export const AppLayout = ({
               actions={topNavActions}
               menuActionPress={menuActionPress}
               selectedAction={selectedAction}
+              displayMenuIcon={drawerNavActions.length}
             />
           )
         }

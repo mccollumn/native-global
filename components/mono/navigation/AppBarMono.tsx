@@ -18,6 +18,7 @@ export const AppBarMono = ({
   actionPress = () => { },
   selectedAction,
   navigation = {},
+  displayMenuIcon,
   ...props
 }: AppBarMonoProps) => {
 
@@ -34,7 +35,8 @@ export const AppBarMono = ({
   const displayMenu = [
     !!actions.length,
     !!backActionPress,
-    !!menuActionPress
+    !!menuActionPress,
+    !!displayMenuIcon
   ].some(s => s);
 
   if (!displayMenu) {
