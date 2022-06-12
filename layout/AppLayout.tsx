@@ -108,16 +108,6 @@ const getChildrenList = ({
         userAuthRoles,
       });
 
-      // Redirect page to Login on MOUNT if not authenticated
-      React.useEffect(() => {
-        if (!isAuthenticated) {
-          navigation.jumpTo('Login', {
-            isRedirected: true,
-            isAuthenticated
-          });
-        }
-      }, []);
-
       return (
         <View style={{
           height: '100%',
