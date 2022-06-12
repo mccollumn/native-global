@@ -233,9 +233,13 @@ export interface AppBarActionProps {
    */
   style?: Object;
   /**
-   * Allow display ob public pages
+   * Allow display on public pages
    */
   isPublic?: Boolean;
+  /**
+   * Display ONLY on public pages
+   */
+  isPublicOnly?: Boolean;
 }
 
 export interface AppBarMonoProps {

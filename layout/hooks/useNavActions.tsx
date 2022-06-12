@@ -10,11 +10,15 @@ export const useNavActions = (
   isAuthenticated: Boolean
 ) => {
   const authorizedActions = actions.filter(a => {
+    if (isAuthenticated && a.isPublicOnly) {
+      return false;
+    }
+
     if (isAuthenticated) {
       return true
     }
 
-    return a.isPublic;
+    return a.isPublic || a.isPublicOnly;
   });
 
   const topNavActions = authorizedActions.filter(

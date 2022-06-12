@@ -151,6 +151,15 @@ const actions = [
     isPublic: true
   },
   {
+    id: 'LOGIN',
+    name: 'Login',
+    accessibilityLabel: 'Login',
+    icon: 'login',
+    position: 'top',
+    onPress: () => { },
+    isPublicOnly: true
+  },
+  {
     id: 'LABEL',
     name: 'Label',
     accessibilityLabel: 'Access Label',
