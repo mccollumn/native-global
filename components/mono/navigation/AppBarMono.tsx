@@ -191,7 +191,9 @@ const ActionItem = ({
 
   return (
     <Appbar.Action
-      style={styles[`${position}ActionIcon`]}
+      style={{
+        ...styles[`${position}ActionIcon`]
+      }}
       icon={icon}
       onPress={pressHandler}
       color={color}

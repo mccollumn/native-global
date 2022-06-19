@@ -7,7 +7,7 @@ import {
  */
 export const useNavActions = (
   actions: Array<AppBarActionProps>,
-  isAuthenticated: Boolean
+  isAuthenticated?: Boolean
 ) => {
   const authorizedActions = actions.filter(a => {
     if (isAuthenticated && a.isPublicOnly) {
