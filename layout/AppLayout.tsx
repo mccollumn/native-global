@@ -111,9 +111,13 @@ const getChildrenList = ({
       return (
         <View style={{
           height: '100%',
+          width: '100%'
         }}>
 
-          <View>
+          <View style={{
+            height: 'inherit',
+            width: 'inherit'
+          }}>
 
             {clone}
 

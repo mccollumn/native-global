@@ -2,7 +2,6 @@ import React from "react";
 import { Text, View } from 'react-native';
 import FormProviderMono from "../components/mono/form/FormProviderMono";
 import TextInputMono from "../components/mono/input/TextInputMono";
-import { TextInput } from "react-native-paper";
 
 export const Login = ({
   name = 'Login'
@@ -22,7 +21,14 @@ export const Login = ({
   };
 
   return (
-    <View>
+    <View
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
 
       <View>
         <Text>Submit Value 1: {values.textField1}</Text>
@@ -49,8 +55,6 @@ export const Login = ({
               }}
             />
 
-            {/* 
-
             <TextInputMono
               name="textField2"
               label="Enter text"
@@ -58,7 +62,7 @@ export const Login = ({
               rules={{
                 required: 'This field is required'
               }}
-            /> */}
+            />
 
           </View>
 
