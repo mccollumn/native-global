@@ -16,8 +16,8 @@ export const Login = ({
   };
 
   const defaultValues = {
-    textField1: '',
-    textField2: 'Text 2 default value'
+    username: '',
+    password: ''
   };
 
   return (
@@ -31,11 +31,6 @@ export const Login = ({
       }}>
 
       <View>
-        <Text>Submit Value 1: {values.textField1}</Text>
-        <Text>Submit Value 2: {values.textField2}</Text>
-      </View>
-
-      <View>
 
         <FormProviderMono
           defaultValues={defaultValues}
@@ -47,18 +42,17 @@ export const Login = ({
             <Text>Login Page</Text>
 
             <TextInputMono
-              name="textField1"
-              label="Enter text"
-              helperText="Enter text here"
+              name="username"
+              label="Username or Email"
               rules={{
                 required: 'This field is required'
               }}
             />
 
             <TextInputMono
-              name="textField2"
-              label="Enter text"
-              helperText="Enter text here"
+              name="password"
+              label="Password"
+              secureTextEntry={true}
               rules={{
                 required: 'This field is required'
               }}
