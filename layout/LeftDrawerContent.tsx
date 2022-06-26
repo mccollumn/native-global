@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from 'react-native';
 import { Drawer } from 'react-native-paper';
 
-export const LeftDrawer = ({
+export const LeftDrawerContent = ({
   drawerNavActions = [],
   handleNavActionPress = () => { },
   navigation,

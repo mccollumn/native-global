@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Button } from 'react-native';
 import { useStyles } from './AppLayout.styles';
-import { LeftDrawer } from './LeftDrawer';
+import { LeftDrawerContent } from './LeftDrawerContent';
 import { useNavActions } from './hooks/useNavActions';
 import {
   AppBarMono,
@@ -53,7 +53,7 @@ export const AppLayout = ({
     <Drawer.Navigator
       initialRouteName="Home"
       drawerContent={(props) => (
-        <LeftDrawer
+        <LeftDrawerContent
           drawerNavActions={drawerNavActions}
           handleNavActionPress={handleNavActionPress}
           selectedAction={selectedAction}
