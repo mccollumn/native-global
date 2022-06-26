@@ -30,16 +30,21 @@ export const Login = ({
         alignItems: 'center'
       }}>
 
-      <View>
-
         <FormProviderMono
           defaultValues={defaultValues}
           onSubmit={onSubmit}
-          submitButtonText='Submit'>
+          submitButtonText='Login'>
 
           <View>
 
-            <Text>Login Page</Text>
+            <Text
+              style={{
+                fontSize: '24px',
+                alignSelf: 'center',
+                marginBottom: '24px'
+              }}>
+              Login Page
+            </Text>
 
             <TextInputMono
               name="username"
@@ -61,8 +66,6 @@ export const Login = ({
           </View>
 
         </FormProviderMono>
-
-      </View>
 
     </View >
   );
