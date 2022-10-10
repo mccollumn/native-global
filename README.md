@@ -4,9 +4,10 @@ Monorepo for React Native Web/IOS/Android app deployment
 
 ## Setup
 
-- npm install
+- `npm install --force`
+  Force is needed due to current issue with "@testing-library/react-native": "^9.0.0"
 
-- npm start
+- `npm start`
 
 ## Docs
 
