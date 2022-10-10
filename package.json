@@ -1,4 +1,5 @@
 {
+  "name": "reactglobal",
   "main": "node_modules/expo/AppEntry.js",
   "engines": {
     "node": "16.x"
@@ -8,7 +9,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "npm run clear && expo start --web",
-    "storybook:web": "npm run clear && APP_ENV=storybook expo start --web",
+    "storybook:web": "npm run clear && EXPO_NO_TYPESCRIPT_SETUP=1 APP_ENV=storybook expo start --web",
     "eject": "expo eject",
     "test": "jest --watchAll",
     "build": "expo build:web",
@@ -18,7 +19,10 @@
     "clear": "rm -rf .expo"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "setupFiles": [
+      "./mock.js"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
@@ -26,24 +30,24 @@
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
-    "expo": "^43.0.0",
-    "expo-asset": "~8.4.3",
-    "expo-constants": "~12.1.3",
-    "expo-font": "~10.0.3",
-    "expo-linking": "~2.4.2",
-    "expo-splash-screen": "~0.13.5",
-    "expo-status-bar": "~1.1.0",
-    "expo-web-browser": "~10.0.3",
+    "expo": "^44.0.0",
+    "expo-asset": "~8.4.5",
+    "expo-constants": "~13.0.0",
+    "expo-font": "~10.0.4",
+    "expo-linking": "~3.0.0",
+    "expo-splash-screen": "~0.14.1",
+    "expo-status-bar": "~1.2.0",
+    "expo-web-browser": "~10.1.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-hook-form": "^7.21.0",
     "react-native": "0.64.3",
     "react-native-dotenv": "^3.3.0",
-    "react-native-gesture-handler": "~1.10.2",
+    "react-native-gesture-handler": "~2.1.0",
     "react-native-paper": "^4.10.1",
-    "react-native-reanimated": "~2.2.0",
+    "react-native-reanimated": "~2.3.1",
     "react-native-safe-area-context": "3.3.2",
-    "react-native-screens": "~3.8.0",
+    "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1"
   },
   "devDependencies": {
@@ -55,12 +59,13 @@
     "@storybook/addon-ondevice-knobs": "^5.3.25",
     "@storybook/react-native": "^5.3.25",
     "@storybook/react-native-server": "^5.3.23",
+    "@testing-library/react-native": "^9.0.0",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
     "babel-loader": "^8.2.3",
     "babel-plugin-react-native-web": "^0.17.5",
     "expo-cli": "^4.13.0",
-    "jest-expo": "^43.0.0",
+    "jest-expo": "^44.0.0",
     "react-native-storybook-loader": "^2.0.4",
     "typescript": "~4.3.5"
   },
