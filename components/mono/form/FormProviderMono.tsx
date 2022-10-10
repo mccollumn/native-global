@@ -7,7 +7,8 @@ import { styles } from './FormProviderMono.styles';
 export const FormProviderMono = ({
   onSubmit = () => { },
   onError = () => { },
-  submitButtonText = '',
+  submitButtonText = 'Submit',
+  containerStyles = {},
   defaultValues = {},
   children,
 }: FormProviderMonoProps) => {
@@ -19,7 +20,7 @@ export const FormProviderMono = ({
   return (
     <FormProvider {...methods}>
 
-      <View>
+      <View style={containerStyles}>
 
         <View>
           {children}
@@ -63,6 +64,10 @@ interface FormProviderMonoProps {
    * Form elements will be populated based on this object
    */
   defaultValues?: Object;
+  /**
+   * Styles for wrapping container
+   */
+  containerStyles?: Object;
   /**
    * All child elements
    */
